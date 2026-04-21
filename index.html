@@ -1,786 +1,873 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>OVO Clothing | October's Very Own</title>
-  <!-- Google Fonts for clean typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 (free icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: #000000;
-      font-family: 'Inter', sans-serif;
-      color: #ffffff;
-      line-height: 1.4;
-      scroll-behavior: smooth;
-    }
-
-    /* custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0a0a0a;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #c9a03d;
-      border-radius: 8px;
-    }
-
-    /* container utility */
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-
-    /* ===== HEADER / NAV ===== */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background-color: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-      padding: 18px 0;
-    }
-
-    .nav-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .logo-golo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: 3px;
-      background: linear-gradient(135deg, #f5e7c8, #d4af37);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-transform: uppercase;
-    }
-
-    .logo-ovo {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #d4af37;
-      letter-spacing: 1px;
-      border-left: 2px solid #d4af37;
-      padding-left: 12px;
-      margin-left: 4px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #f0f0f0;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      letter-spacing: 0.5px;
-      transition: 0.2s ease;
-      position: relative;
-    }
-
-    .nav-links a:hover {
-      color: #e4b83b;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: #d4af37;
-      transition: 0.2s;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* menu icon hidden on desktop */
-    .menu-icon {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #d4af37;
-    }
-
-    /* ===== HERO SECTION (OVO / GOLO fusion) ===== */
-    .hero {
-      padding: 100px 0 80px;
-      background: radial-gradient(circle at 20% 30%, #0c0b0a, #000000);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .hero-grid {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-    }
-
-    .hero-text {
-      flex: 1;
-    }
-
-    .hero-badge {
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #d4af37;
-      font-weight: 600;
-      margin-bottom: 20px;
-      display: inline-block;
-      border-left: 3px solid #d4af37;
-      padding-left: 12px;
-    }
-
-    .hero-text h1 {
-      font-size: 4.2rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 24px;
-    }
-
-    .hero-text h1 span {
-      background: linear-gradient(120deg, #f5e7c8, #e4b83b);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-description {
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #cdcdcd;
-      max-width: 550px;
-      margin-bottom: 32px;
-      font-weight: 300;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: #d4af37;
-      border: none;
-      padding: 12px 32px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #000;
-      border-radius: 40px;
-      transition: 0.2s;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn-primary:hover {
-      background: #f5cb5c;
-      transform: scale(1.02);
-      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1.5px solid #d4af37;
-      padding: 12px 32px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      color: #d4af37;
-      border-radius: 40px;
-      transition: 0.2s;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn-outline:hover {
-      background: rgba(212, 175, 55, 0.1);
-      border-color: #f5cb5c;
-      color: #f5cb5c;
-    }
-
-    .hero-image {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-image img {
-      max-width: 100%;
-      width: 380px;
-      filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
-      opacity: 0.95;
-      transition: 0.3s;
-    }
-
-    /* ===== COLLECTION SECTION ===== */
-    .collection-section {
-      padding: 90px 0 100px;
-      background: #030303;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-title h2 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #fff, #d4af37);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-
-    .section-title .gold-bar {
-      width: 70px;
-      height: 3px;
-      background: #d4af37;
-      margin: 16px auto 0;
-    }
-
-    .collection-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 40px;
-    }
-
-    .product-card {
-      background: #111111;
-      border-radius: 24px;
-      overflow: hidden;
-      transition: 0.25s ease;
-      border: 1px solid #222;
-      cursor: default;
-    }
-
-    .product-card:hover {
-      transform: translateY(-8px);
-      border-color: #d4af3740;
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.8);
-    }
-
-    .card-img {
-      width: 100%;
-      height: 340px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      transition: 0.2s;
-    }
-
-    .card-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: #d4af37;
-      color: #000;
-      font-size: 0.7rem;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 30px;
-      letter-spacing: 0.5px;
-    }
-
-    .card-info {
-      padding: 20px 20px 24px;
-    }
-
-    .product-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      letter-spacing: -0.3px;
-    }
-
-    .product-sub {
-      font-size: 0.8rem;
-      color: #d4af37;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-
-    .product-desc {
-      font-size: 0.85rem;
-      color: #aaa;
-      line-height: 1.4;
-      margin-bottom: 16px;
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 10px;
-    }
-
-    .price {
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: #fff;
-    }
-
-    .shop-icon {
-      color: #d4af37;
-      font-size: 1.2rem;
-      transition: 0.2s;
-      cursor: pointer;
-    }
-
-    .shop-icon:hover {
-      transform: translateX(4px);
-      color: #f5cb5c;
-    }
-
-    /* artist collab highlight (j. cole, carti) */
-    .collab-highlight {
-      background: linear-gradient(145deg, #0c0b0a, #000000);
-      padding: 60px 0;
-      border-top: 1px solid #2a2a2a;
-      border-bottom: 1px solid #2a2a2a;
-      margin: 0 0 30px 0;
-    }
-
-    .collab-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      text-align: center;
-    }
-
-    .artist-item {
-      background: #0e0e0e;
-      border-radius: 60px;
-      padding: 12px 28px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      border: 1px solid #2c2c2c;
-      backdrop-filter: blur(4px);
-    }
-
-    .artist-item i {
-      font-size: 1.8rem;
-      color: #d4af37;
-    }
-
-    .artist-item span {
-      font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: 1px;
-    }
-
-    .artist-item .artist-name {
-      font-weight: 800;
-      color: #f5e7c8;
-    }
-
-    /* quote / drake legacy */
-    .legacy-quote {
-      background: #080808;
-      padding: 70px 20px;
-      text-align: center;
-    }
-
-    .quote-text {
-      font-size: 1.5rem;
-      font-weight: 400;
-      max-width: 800px;
-      margin: 0 auto 20px;
-      font-style: italic;
-      color: #ddd;
-    }
-
-    .quote-author {
-      font-weight: 700;
-      color: #d4af37;
-      letter-spacing: 1px;
-    }
-
-    /* footer */
-    .site-footer {
-      background: #020202;
-      padding: 48px 0 30px;
-      border-top: 1px solid #1f1f1f;
-    }
-
-    .footer-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-col p {
-      color: #9a9a9a;
-      font-size: 0.85rem;
-      max-width: 260px;
-    }
-
-    .footer-col h4 {
-      color: #d4af37;
-      margin-bottom: 16px;
-      font-weight: 700;
-      font-size: 1rem;
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 8px;
-    }
-
-    .footer-col a {
-      color: #aaa;
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: 0.2s;
-    }
-
-    .footer-col a:hover {
-      color: #d4af37;
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 20px;
-      font-size: 1.4rem;
-    }
-
-    .social-icons a {
-      color: #ccc;
-    }
-
-    .social-icons a:hover {
-      color: #d4af37;
-    }
-
-    .copyright {
-      text-align: center;
-      font-size: 0.75rem;
-      color: #5a5a5a;
-      padding-top: 30px;
-      border-top: 1px solid #181818;
-    }
-
-    /* responsive */
-    @media (max-width: 900px) {
-      .container {
-        padding: 0 24px;
-      }
-      .hero-text h1 {
-        font-size: 2.8rem;
-      }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #000000dd;
-        backdrop-filter: blur(12px);
-        padding: 20px;
-        border-radius: 20px;
-        margin-top: 18px;
-        gap: 20px;
-        text-align: center;
-      }
-      .nav-links.show {
-        display: flex;
-      }
-      .menu-icon {
-        display: block;
-      }
-      .nav-bar {
-        position: relative;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .hero-grid {
-        flex-direction: column;
-        text-align: center;
-      }
-      .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .btn-group {
-        justify-content: center;
-      }
-      .section-title h2 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>OVO | October's Very Own – Immersive Shader Experience</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Three.js Core -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        body {
+            background-color: #000000;
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            overflow-x: hidden;
+            overscroll-behavior: none;
+        }
+
+        /* Custom Cursor (Liquid + Glow) */
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #d4af37;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            will-change: transform;
+        }
+        .cursor-ring {
+            position: fixed;
+            width: 48px;
+            height: 48px;
+            border: 2px solid rgba(212, 175, 55, 0.7);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.2s, height 0.2s, border 0.2s;
+            will-change: transform;
+            backdrop-filter: blur(2px);
+        }
+        .cursor-glow {
+            position: fixed;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            will-change: transform;
+        }
+
+        /* Canvas Background */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            background: transparent;
+        }
+
+        /* Header */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 24px 48px;
+            mix-blend-mode: difference;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-ovo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #fff, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+        .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; color: #fff; }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 24px;
+            margin-bottom: 15vh;
+        }
+        .hero-content {
+            max-width: 1100px;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .hero-badge {
+            font-size: 0.9rem;
+            letter-spacing: 6px;
+            color: #d4af37;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border-left: 2px solid #d4af37;
+            padding-left: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+        .hero h1 span {
+            background: linear-gradient(120deg, #f5e7c8, #e4b83b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-description {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto 48px;
+            font-weight: 300;
+        }
+        .btn-group {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #d4af37;
+            padding: 14px 42px;
+            font-weight: 700;
+            color: #000;
+            border-radius: 50px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: #f5cb5c;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(212,175,55,0.5);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #d4af37;
+            padding: 14px 42px;
+            font-weight: 700;
+            color: #d4af37;
+            border-radius: 50px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: rgba(212,175,55,0.1);
+            border-color: #f5cb5c;
+            color: #f5cb5c;
+        }
+
+        /* Artists Marquee */
+        .artists-strip {
+            padding: 60px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 1px solid rgba(212,175,55,0.3);
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+            margin: 40px 0;
+            background: #050505;
+        }
+        .marquee {
+            display: inline-block;
+            animation: marquee 22s linear infinite;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: 8px;
+            color: transparent;
+            -webkit-text-stroke: 1px #d4af37;
+        }
+        .marquee span { margin: 0 60px; color: #d4af37; -webkit-text-stroke: 0; }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Collection */
+        .collection-section {
+            padding: 100px 48px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .section-title h2 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .gold-bar {
+            width: 80px;
+            height: 4px;
+            background: #d4af37;
+            margin: 20px auto;
+        }
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: rgba(17, 17, 17, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid rgba(212,175,55,0.2);
+            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform: translateY(0);
+        }
+        .product-card:hover {
+            transform: translateY(-15px);
+            border-color: #d4af37;
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.8);
+        }
+        .card-img {
+            height: 380px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #d4af37;
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: 800;
+            font-size: 0.7rem;
+        }
+        .card-info {
+            padding: 28px;
+        }
+        .product-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .product-sub {
+            color: #d4af37;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .product-desc {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+        .buy-btn {
+            background: #d4af37;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #000;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.8rem;
+        }
+        .buy-btn:hover {
+            background: #f5cb5c;
+            transform: scale(1.02);
+        }
+
+        /* Quote */
+        .legacy-quote {
+            text-align: center;
+            padding: 150px 24px;
+            background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+            margin: 60px 0;
+        }
+        .quote-text {
+            font-size: 2rem;
+            font-weight: 400;
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto;
+            color: #e0e0e0;
+        }
+        .quote-author {
+            margin-top: 32px;
+            font-weight: 700;
+            color: #d4af37;
+        }
+
+        /* Footer */
+        .site-footer {
+            padding: 80px 48px 40px;
+            background: #010101;
+            border-top: 1px solid #1f1f1f;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .footer-col h4 {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+        .footer-col a {
+            color: #aaa;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .footer-col a:hover { color: #d4af37; transform: translateX(5px); }
+        .social-icons { display: flex; gap: 24px; font-size: 1.5rem; margin-top: 20px; }
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #1a1a1a;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* Payment Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+        }
+        .modal-content {
+            background: #0a0a0a;
+            border: 1px solid #d4af37;
+            border-radius: 32px;
+            max-width: 500px;
+            width: 90%;
+            padding: 32px;
+            text-align: center;
+            animation: fadeUp 0.3s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            color: #d4af37;
+        }
+        .modal-product {
+            background: #1a1a1a;
+            padding: 16px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .pay-btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .pay-btn i { font-size: 1.4rem; }
+        .pay-btn.paypal { background: #ffc439; color: #000; }
+        .pay-btn.credit { background: #2c2c2c; color: #fff; border: 1px solid #555; }
+        .pay-btn.apple { background: #000; color: #fff; border: 1px solid #d4af37; }
+        .close-modal {
+            margin-top: 24px;
+            background: transparent;
+            border: 1px solid #d4af37;
+            padding: 10px;
+            border-radius: 40px;
+            width: 100%;
+            color: #d4af37;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .menu-icon { display: block; }
+            .site-header { padding: 20px; }
+            .collection-section { padding: 40px 20px; }
+            .hero h1 { font-size: 3rem; }
+            .quote-text { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container">
-    <div class="nav-bar">
-      <div class="logo-area">
-        <span class="logo-golo">GOLO</span>
-        <span class="logo-ovo">OVO CLOTHING</span>
-      </div>
-      <div class="menu-icon" id="menuToggle">
-        <i class="fas fa-bars"></i>
-      </div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#">HOME</a></li>
-        <li><a href="#collection">COLLECTION</a></li>
-        <li><a href="#">ARCHIVE</a></li>
-        <li><a href="#">OVO X COLLABS</a></li>
-        <li><a href="#">SHOP</a></li>
-      </ul>
-    </div>
-  </div>
-</header>
+<div id="canvas-container"></div>
 
-<main>
-  <!-- Hero / brand intro -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <div class="hero-badge">OCTOBER'S VERY OWN</div>
-          <h1>THE OVO <span>LEGACY</span></h1>
-          <p class="hero-description">
-            Premium streetwear & luxury essentials founded by Drake. Defined by the iconic owl, raw elegance, and cultural resonance. Every piece tells a story.
-          </p>
-          <div class="btn-group">
-            <a href="#" class="btn-primary">SHOP NOW</a>
-            <a href="#" class="btn-outline">DISCOVER OVO</a>
-          </div>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+<div class="cursor-glow"></div>
+
+<div class="content">
+    <header class="site-header">
+        <div class="nav-bar">
+            <div class="logo-ovo">OCTOBER'S VERY OWN</div>
+            <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#collection">COLLECTION</a></li>
+                <li><a href="#">ARCHIVE</a></li>
+                <li><a href="#">OVO X</a></li>
+                <li><a href="#">SHOP</a></li>
+            </ul>
         </div>
-        <div class="hero-image">
-          <!-- golden drake/ovo vibe with abstract owl silhouette? a stylish golden emblem -->
-          <img src="https://placehold.co/600x600/1a1a1a/d4af37?text=OVO+OWL&font=montserrat" alt="OVO Golden Owl Emblem" style="border-radius: 50%; object-fit: cover;">
-        </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- artist collaborations inline (J. Cole, Playboi Carti etc) -->
-  <div class="collab-highlight">
-    <div class="container">
-      <div class="collab-inner">
-        <div class="artist-item"><i class="fas fa-microphone-alt"></i><span>Collaboration with</span> <span class="artist-name">J. COLE</span></div>
-        <div class="artist-item"><i class="fas fa-crown"></i><span>Featuring</span> <span class="artist-name">PLAYBOI CARTI</span></div>
-        <div class="artist-item"><i class="fas fa-star-of-life"></i><span>Signature Series</span> <span class="artist-name">DRAKE</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- COLLECTION section -->
-  <section id="collection" class="collection-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>COLLECTION</h2>
-        <div class="gold-bar"></div>
-        <p style="margin-top: 12px; color:#aaa; font-weight:300;">Limited drops — timeless designs</p>
-      </div>
-      <div class="collection-grid">
-        <!-- Card 1: OVO owl hoodie -->
-        <div class="product-card">
-          <div class="card-img" style="background-image: url('https://placehold.co/600x700/1c1c1c/d4af37?text=OVO+HOODIE&font=montserrat'); background-size: cover;">
-            <div class="card-badge">Best Seller</div>
-          </div>
-          <div class="card-info">
-            <div class="product-title">OCTOBER'S HOODIE</div>
-            <div class="product-sub">Premium fleece</div>
-            <div class="product-desc">Embroidered owl patch, heavyweight cotton, brushed interior. Signature black & gold.</div>
-            <div class="price-row">
-              <span class="price">$148 USD</span>
-              <i class="fas fa-arrow-right shop-icon"></i>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">EST. TORONTO</div>
+                <h1>THE OVO <span>LEGACY</span></h1>
+                <p class="hero-description">Premium streetwear & luxury essentials founded by Drake. Defined by the iconic owl, raw elegance, and cultural resonance.</p>
+                <div class="btn-group">
+                    <a href="#collection" class="btn-primary">SHOP NOW</a>
+                    <a href="#" class="btn-outline">DISCOVER OVO</a>
+                </div>
             </div>
-          </div>
-        </div>
+        </section>
 
-        <!-- Card 2: OVO x J. Cole exclusive -->
-        <div class="product-card">
-          <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/c9a03d?text=J.+COLE+x+OVO&font=montserrat'); background-size: cover;">
-            <div class="card-badge">Collab</div>
-          </div>
-          <div class="card-info">
-            <div class="product-title">J. COLE • DREAMER EDITION</div>
-            <div class="product-sub">Limited tee</div>
-            <div class="product-desc">Co-designed with J. Cole. Celebrating hip-hop heritage and OVO premium quality.</div>
-            <div class="price-row">
-              <span class="price">$98 USD</span>
-              <i class="fas fa-arrow-right shop-icon"></i>
+        <div class="artists-strip">
+            <div class="marquee">
+                <span>✧</span> J. COLE <span>✧</span> PLAYBOI CARTI <span>✧</span> DRAKE <span>✧</span> PREMIUM STREETWEAR <span>✧</span> OVO SOUND <span>✧</span>
+                <span>✧</span> J. COLE <span>✧</span> PLAYBOI CARTI <span>✧</span> DRAKE <span>✧</span> PREMIUM STREETWEAR <span>✧</span> OVO SOUND <span>✧</span>
             </div>
-          </div>
         </div>
 
-        <!-- Card 3: Playboi Carti capsule -->
-        <div class="product-card">
-          <div class="card-img" style="background-image: url('https://placehold.co/600x700/1e1e1e/c9a03d?text=CARTI+CAPSULE&font=montserrat'); background-size: cover;">
-            <div class="card-badge">Moshpit Series</div>
-          </div>
-          <div class="card-info">
-            <div class="product-title">CARTI • RED OWL</div>
-            <div class="product-sub">Artist capsule</div>
-            <div class="product-desc">Bold graphics, distressed finish. A tribute to underground energy and high fashion.</div>
-            <div class="price-row">
-              <span class="price">$128 USD</span>
-              <i class="fas fa-arrow-right shop-icon"></i>
+        <section id="collection" class="collection-section">
+            <div class="section-title">
+                <h2>COLLECTION</h2>
+                <div class="gold-bar"></div>
+                <p style="color:#aaa">Limited drops — timeless designs</p>
             </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Signature Drake Jacket -->
-        <div class="product-card">
-          <div class="card-img" style="background-image: url('https://placehold.co/600x700/2a2a2a/d4af37?text=VARSITY+JACKET&font=montserrat'); background-size: cover;">
-            <div class="card-badge">Icon</div>
-          </div>
-          <div class="card-info">
-            <div class="product-title">'VIEWS' VARSITY JACKET</div>
-            <div class="product-sub">Wool & leather</div>
-            <div class="product-desc">Inspired by Drake's legacy. Owl embroidery on back, premium chenille patches.</div>
-            <div class="price-row">
-              <span class="price">$420 USD</span>
-              <i class="fas fa-arrow-right shop-icon"></i>
+            <div class="collection-grid" id="productGrid">
+                <div class="product-card" data-name="October's Hoodie" data-price="148">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1c1c1c/d4af37?text=OVO+HOODIE&font=montserrat');"><div class="card-badge">Best Seller</div></div>
+                    <div class="card-info"><div class="product-title">OCTOBER'S HOODIE</div><div class="product-sub">Premium fleece</div><div class="product-desc">Embroidered owl patch, heavyweight cotton, brushed interior.</div><div class="price-row"><span class="price">$148 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="J. COLE Dreamer Edition" data-price="98">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/c9a03d?text=J.+COLE+x+OVO&font=montserrat');"><div class="card-badge">Collab</div></div>
+                    <div class="card-info"><div class="product-title">J. COLE • DREAMER EDITION</div><div class="product-sub">Limited tee</div><div class="product-desc">Co-designed with J. Cole. Celebrating hip-hop heritage.</div><div class="price-row"><span class="price">$98 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="Carti Red Owl" data-price="128">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1e1e1e/c9a03d?text=CARTI+CAPSULE&font=montserrat');"><div class="card-badge">Moshpit Series</div></div>
+                    <div class="card-info"><div class="product-title">CARTI • RED OWL</div><div class="product-sub">Artist capsule</div><div class="product-desc">Bold graphics, distressed finish. Underground energy.</div><div class="price-row"><span class="price">$128 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="Views Varsity Jacket" data-price="420">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/2a2a2a/d4af37?text=VARSITY+JACKET&font=montserrat');"><div class="card-badge">Icon</div></div>
+                    <div class="card-info"><div class="product-title">'VIEWS' VARSITY JACKET</div><div class="product-sub">Wool & leather</div><div class="product-desc">Owl embroidery on back, premium chenille patches.</div><div class="price-row"><span class="price">$420 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
             </div>
-          </div>
+        </section>
+
+        <div class="legacy-quote">
+            <div class="quote-text">“OVO is not just a brand — it’s a feeling. It’s where ambition meets loyalty and every piece carries the weight of October.”</div>
+            <div class="quote-author">— DRAKE, FOUNDER</div>
+            <i class="fas fa-owl" style="font-size: 3rem; color: #d4af37; margin-top: 40px; display: inline-block; opacity: 0.6;"></i>
         </div>
-      </div>
-    </div>
-  </section>
+    </main>
 
-  <!-- drake quote / legacy block  -->
-  <div class="legacy-quote">
-    <div class="container">
-      <div class="quote-text">“OVO is not just a brand — it’s a feeling. It’s where ambition meets loyalty and every piece carries the weight of October.”</div>
-      <div class="quote-author">— DRAKE, FOUNDER</div>
-      <div style="margin-top: 32px;">
-        <i class="fas fa-owl" style="font-size: 2rem; color: #d4af37; opacity: 0.7;"></i>
-      </div>
-    </div>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-col">
-        <h4>OVO CLOTHING</h4>
-        <p>October's Very Own. Premium streetwear since 2011. Rooted in Toronto, embraced worldwide.</p>
-        <div class="social-icons" style="margin-top: 20px;">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-soundcloud"></i></a>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-col"><h4>OVO CLOTHING</h4><p>October's Very Own. Premium streetwear since 2011. Rooted in Toronto.</p><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-soundcloud"></i></a></div></div>
+            <div class="footer-col"><h4>EXPLORE</h4><ul><li><a href="#">New Arrivals</a></li><li><a href="#">Collections</a></li><li><a href="#">OVO x Artists</a></li><li><a href="#">Lookbook</a></li></ul></div>
+            <div class="footer-col"><h4>SUPPORT</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Size Guide</a></li></ul></div>
+            <div class="footer-col"><h4>OCTOBER'S VERY OWN</h4><ul><li><a href="#">About Drake</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Store Locator</a></li></ul></div>
         </div>
-      </div>
-      <div class="footer-col">
-        <h4>EXPLORE</h4>
-        <ul>
-          <li><a href="#">New Arrivals</a></li>
-          <li><a href="#">Collections</a></li>
-          <li><a href="#">OVO x Artists</a></li>
-          <li><a href="#">Lookbook</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>SUPPORT</h4>
-        <ul>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Shipping</a></li>
-          <li><a href="#">Returns</a></li>
-          <li><a href="#">Size Guide</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>OCTOBER'S VERY OWN</h4>
-        <ul>
-          <li><a href="#">About Drake</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Store Locator</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="copyright">
-      <p>© 2026 OVO CLOTHING — OCTOBER'S VERY OWN. ALL RIGHTS RESERVED. | INSPIRED BY DRAKE, J. COLE & PLAYBOI CARTI.</p>
-    </div>
-  </div>
-</footer>
+        <div class="copyright"><p>© 2026 OVO CLOTHING — OCTOBER'S VERY OWN. ALL RIGHTS RESERVED.</p></div>
+    </footer>
+</div>
 
-<!-- mobile menu toggle script -->
+<!-- Payment Modal -->
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <h3><i class="fas fa-shopping-cart"></i> Complete Payment</h3>
+        <div class="modal-product" id="modalProductInfo">
+            <strong id="modalProductName">Product Name</strong><br>
+            <span id="modalProductPrice">$0 USD</span>
+        </div>
+        <p style="margin-bottom: 10px;">Select payment method:</p>
+        <div class="payment-methods">
+            <button class="pay-btn paypal" id="paypalBtn"><i class="fab fa-paypal"></i> PayPal</button>
+            <button class="pay-btn credit" id="creditBtn"><i class="fas fa-credit-card"></i> Credit / Debit Card</button>
+            <button class="pay-btn apple" id="appleBtn"><i class="fab fa-apple-pay"></i> Apple Pay</button>
+        </div>
+        <button class="close-modal" id="closeModalBtn">Cancel</button>
+    </div>
+</div>
+
+<script type="module">
+    import * as THREE from 'three';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    
+    // --- Setup Scene, Camera, Renderer ---
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+    scene.fog = new THREE.FogExp2(0x000000, 0.008);
+    
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 0.5, 12);
+    
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.toneMapping = THREE.ReinhardToneMapping;
+    renderer.toneMappingExposure = 1.3;
+    container.appendChild(renderer.domElement);
+    
+    // Post Processing (Bloom)
+    const renderScene = new RenderPass(scene, camera);
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.4, 0.85);
+    bloomPass.threshold = 0.05;
+    bloomPass.strength = 0.7;
+    bloomPass.radius = 0.4;
+    const effectComposer = new EffectComposer(renderer);
+    effectComposer.addPass(renderScene);
+    effectComposer.addPass(bloomPass);
+    
+    // --- Shader Material: Abstract Fluid / Noise (like shader.se style) ---
+    const geometry = new THREE.IcosahedronGeometry(1.6, 2); // smooth, faceted
+    const vertexShader = `
+        varying vec2 vUv;
+        void main() {
+            vUv = uv;
+            vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+            gl_PointSize = 1.0;
+            gl_Position = projectionMatrix * mvPosition;
+        }
+    `;
+    const fragmentShader = `
+        uniform float uTime;
+        uniform vec2 uMouse;
+        varying vec2 vUv;
+        
+        void main() {
+            vec2 uv = vUv;
+            // Fluid-like noise using sine/cosine patterns
+            float time = uTime * 0.6;
+            float n1 = sin(uv.x * 12.0 + time) * cos(uv.y * 12.0 - time);
+            float n2 = sin((uv.y * 8.0 - uv.x * 5.0) * 1.8 + time * 1.2);
+            float n3 = cos((uv.x * 15.0 + uv.y * 7.0) * 1.2 + time * 0.9);
+            float pattern = (n1 + n2 + n3) / 3.0;
+            
+            // Color palette: deep gold, amber, magenta hints
+            vec3 colorA = vec3(0.95, 0.75, 0.25);  // gold
+            vec3 colorB = vec3(0.85, 0.35, 0.55);  // rose
+            vec3 colorC = vec3(0.2, 0.1, 0.4);     // deep purple
+            
+            vec3 finalColor = mix(colorA, colorB, pattern + 0.3);
+            finalColor = mix(finalColor, colorC, sin(uv.x * 3.14159 + uTime) * 0.4);
+            
+            // Add mouse influence: subtle hue shift
+            finalColor += vec3(uMouse.x * 0.3, uMouse.y * 0.2, (uMouse.x + uMouse.y) * 0.15);
+            
+            // Glow effect
+            float alpha = 0.95;
+            gl_FragColor = vec4(finalColor, alpha);
+        }
+    `;
+    
+    const shaderMaterial = new THREE.ShaderMaterial({
+        uniforms: {
+            uTime: { value: 0 },
+            uMouse: { value: new THREE.Vector2(0, 0) }
+        },
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader,
+        transparent: true,
+        side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending,
+        wireframe: false
+    });
+    
+    const coreMesh = new THREE.Mesh(geometry, shaderMaterial);
+    scene.add(coreMesh);
+    
+    // Additional floating orbs with similar shader for depth
+    const smallGeo = new THREE.SphereGeometry(0.45, 32, 32);
+    const orbMaterial = new THREE.ShaderMaterial({
+        uniforms: { uTime: { value: 0 }, uMouse: { value: new THREE.Vector2(0,0) } },
+        vertexShader: vertexShader,
+        fragmentShader: `
+            uniform float uTime;
+            varying vec2 vUv;
+            void main() {
+                vec2 uv = vUv;
+                float t = uTime * 0.8;
+                float glow = sin(uv.x * 20.0 + t) * cos(uv.y * 20.0 - t);
+                vec3 color = vec3(0.9, 0.6, 0.2) + vec3(glow * 0.4, glow * 0.2, glow * 0.5);
+                gl_FragColor = vec4(color, 0.7);
+            }
+        `,
+        transparent: true,
+        blending: THREE.AdditiveBlending
+    });
+    const orb1 = new THREE.Mesh(smallGeo, orbMaterial);
+    orb1.position.set(2.2, -0.8, -1.5);
+    const orb2 = new THREE.Mesh(smallGeo, orbMaterial);
+    orb2.position.set(-2.0, 1.0, -1.8);
+    const orb3 = new THREE.Mesh(smallGeo, orbMaterial);
+    orb3.position.set(1.5, 1.4, -2.2);
+    scene.add(orb1, orb2, orb3);
+    
+    // Particle system (thousands of tiny glowing dots)
+    const particleCount = 5000;
+    const particlesGeo = new THREE.BufferGeometry();
+    const posArray = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+        posArray[i*3] = (Math.random() - 0.5) * 30;
+        posArray[i*3+1] = (Math.random() - 0.5) * 18;
+        posArray[i*3+2] = (Math.random() - 0.5) * 25 - 10;
+    }
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const particleMat = new THREE.PointsMaterial({ color: 0xd4af37, size: 0.045, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
+    const particles = new THREE.Points(particlesGeo, particleMat);
+    scene.add(particles);
+    
+    // Additional swirling ring (abstract)
+    const ringGeo = new THREE.TorusGeometry(2.2, 0.07, 128, 300);
+    const ringMat = new THREE.MeshStandardMaterial({ color: 0xffaa44, emissive: 0x442200, metalness: 0.7, roughness: 0.3 });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.PI / 2;
+    ring.rotation.z = Math.PI / 3;
+    scene.add(ring);
+    
+    // Lighting to enhance metallic rings (though shader handles itself)
+    const ambientLight = new THREE.AmbientLight(0x111111);
+    scene.add(ambientLight);
+    const dirLight = new THREE.DirectionalLight(0xffcc88, 0.8);
+    dirLight.position.set(2, 3, 4);
+    scene.add(dirLight);
+    
+    // Mouse & Scroll interactivity
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (event.clientY / window.innerHeight) * 2 - 1;
+        // Update shader uniform
+        shaderMaterial.uniforms.uMouse.value.set(mouseX, mouseY);
+        orbMaterial.uniforms.uMouse.value.set(mouseX, mouseY);
+    });
+    
+    let scrollPercent = 0;
+    window.addEventListener('scroll', () => {
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        scrollPercent = window.scrollY / maxScroll;
+    });
+    
+    let time = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.012;
+        shaderMaterial.uniforms.uTime.value = time;
+        orbMaterial.uniforms.uTime.value = time;
+        
+        // Fluid camera movement based on mouse & scroll
+        const targetCamX = mouseX * 1.2;
+        const targetCamY = -mouseY * 0.7;
+        camera.position.x += (targetCamX - camera.position.x) * 0.05;
+        camera.position.y += (targetCamY - camera.position.y) * 0.05;
+        const targetZ = 12 - (scrollPercent * 2.2);
+        camera.position.z += (targetZ - camera.position.z) * 0.07;
+        camera.lookAt(0, 0, 0);
+        
+        // Rotate core mesh and orbs organically
+        coreMesh.rotation.y = time * 0.15;
+        coreMesh.rotation.x = Math.sin(time * 0.4) * 0.2;
+        coreMesh.rotation.z = Math.cos(time * 0.3) * 0.1;
+        orb1.rotation.x = time * 0.5;
+        orb1.rotation.y = time * 0.7;
+        orb2.rotation.x = time * 0.3;
+        orb3.rotation.z = time * 0.6;
+        ring.rotation.z += 0.005;
+        ring.rotation.x = Math.PI / 2 + Math.sin(time * 0.2) * 0.1;
+        
+        // Particles drift
+        particles.rotation.y = time * 0.02;
+        particles.rotation.x = mouseY * 0.15;
+        
+        effectComposer.render();
+    }
+    animate();
+    
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        effectComposer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
+
 <script>
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-
-  if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
+    // Smooth Scroll Lenis
+    const lenis = new Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to('.hero-content', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.4 });
+    gsap.utils.toArray('.product-card').forEach(card => {
+        gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 85%', scrub: 0.4 }, opacity: 0, y: 60, duration: 1 });
     });
-  }
-
-  // close menu when clicking a link (optional)
-  const navItems = document.querySelectorAll('.nav-links a');
-  navItems.forEach(link => {
-    link.addEventListener('click', () => {
-      if (navLinks.classList.contains('show')) {
-        navLinks.classList.remove('show');
-      }
+    
+    // Custom Cursor interaction
+    const dot = document.querySelector('.cursor-dot');
+    const ringCursor = document.querySelector('.cursor-ring');
+    const glow = document.querySelector('.cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+        dot.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
+        ringCursor.style.transform = `translate(${e.clientX - 24}px, ${e.clientY - 24}px)`;
+        glow.style.transform = `translate(${e.clientX - 110}px, ${e.clientY - 110}px)`;
     });
-  });
-
-  // smooth scroll for collection hash
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === "#" || targetId === "") return;
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    const interactive = document.querySelectorAll('a, button, .buy-btn, .btn-primary');
+    interactive.forEach(el => {
+        el.addEventListener('mouseenter', () => { ringCursor.style.width = '76px'; ringCursor.style.height = '76px'; ringCursor.style.borderColor = '#f5cb5c'; ringCursor.style.backgroundColor = 'rgba(212,175,55,0.15)'; glow.style.opacity = '0.9'; });
+        el.addEventListener('mouseleave', () => { ringCursor.style.width = '48px'; ringCursor.style.height = '48px'; ringCursor.style.borderColor = 'rgba(212,175,55,0.7)'; ringCursor.style.backgroundColor = 'transparent'; glow.style.opacity = '0.4'; });
     });
-  });
+    
+    // Payment Modal Logic
+    const modal = document.getElementById('paymentModal');
+    const modalProductName = document.getElementById('modalProductName');
+    const modalProductPrice = document.getElementById('modalProductPrice');
+    let currentProduct = { name: '', price: 0 };
+    
+    function openModal(productName, productPrice) {
+        currentProduct.name = productName;
+        currentProduct.price = productPrice;
+        modalProductName.innerText = productName;
+        modalProductPrice.innerText = `$${productPrice} USD`;
+        modal.style.display = 'flex';
+    }
+    function closeModal() { modal.style.display = 'none'; }
+    
+    document.querySelectorAll('.buy-btn').forEach((btn) => {
+        const card = btn.closest('.product-card');
+        const name = card.getAttribute('data-name');
+        const price = card.getAttribute('data-price');
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openModal(name, price);
+        });
+    });
+    
+    function processPayment(method) {
+        alert(`✅ Payment successful using ${method} for ${currentProduct.name} ($${currentProduct.price} USD).\nThank you for shopping OVO!`);
+        closeModal();
+    }
+    
+    document.getElementById('paypalBtn').addEventListener('click', () => processPayment('PayPal'));
+    document.getElementById('creditBtn').addEventListener('click', () => processPayment('Credit/Debit Card'));
+    document.getElementById('appleBtn').addEventListener('click', () => processPayment('Apple Pay'));
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle?.addEventListener('click', () => {
+        if (navLinks.style.display === 'flex') navLinks.style.display = 'none';
+        else navLinks.style.display = 'flex';
+    });
 </script>
 </body>
 </html>
-
