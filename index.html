@@ -871,3 +871,28 @@
 </script>
 </body>
 </html>
+export default function MotionPath() {
+    return (
+        <div style={{ position: "relative" }}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="451" height="437">
+                {/* Our SVG path will go here */}
+            </svg>
+
+            {/* Our moving box will go here */}
+        </div>
+    )
+}
+
+/**
+ * ==============   Styles   ================
+ */
+
+const box = {
+    width: 50,
+    height: 50,
+    backgroundColor: "#4a9df8",
+    borderRadius: 10,
+    position: "absolute",
+    top: 0,
+    left: 0,
+}
