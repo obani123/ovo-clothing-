@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>OVO | October's Very Own – Immersive Shader Experience</title>
+    <title>OVO | October's Very Own – Bubble Letters Animation</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Lenis Smooth Scroll -->
@@ -38,7 +39,7 @@
             overscroll-behavior: none;
         }
 
-        /* Custom Cursor (Liquid + Glow) */
+        /* Custom Cursor */
         .cursor-dot {
             position: fixed;
             width: 8px;
@@ -91,7 +92,7 @@
             background: transparent;
         }
 
-        /* Header */
+        /* Header - with smooth hide/show on scroll */
         .site-header {
             position: fixed;
             top: 0;
@@ -100,23 +101,97 @@
             z-index: 100;
             padding: 24px 48px;
             mix-blend-mode: difference;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform: translateY(0%);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+        }
+        .site-header.hidden {
+            transform: translateY(-100%);
         }
         .nav-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo-ovo {
-            font-size: 1.8rem;
+        
+        /* BUBBLE LETTERS ANIMATION for OCTOBER'S VERY OWN */
+        .bubble-logo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            font-family: 'Droid Sans Mono', 'Inter', monospace;
+            font-size: 1.6rem;
             font-weight: 800;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, #fff, #d4af37);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .bubble-letter {
+            display: inline-block;
+            background: linear-gradient(135deg, #f5e7c8, #d4af37);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-transform: uppercase;
+            animation: bubbleFloat 2s ease-in-out infinite;
+            transform-origin: center;
+            text-shadow: 0 0 5px rgba(212,175,55,0.3);
         }
+        /* Individual letter delays for organic bubble effect */
+        .bubble-letter:nth-child(1) { animation-delay: 0.0s; }
+        .bubble-letter:nth-child(2) { animation-delay: 0.08s; }
+        .bubble-letter:nth-child(3) { animation-delay: 0.16s; }
+        .bubble-letter:nth-child(4) { animation-delay: 0.24s; }
+        .bubble-letter:nth-child(5) { animation-delay: 0.32s; }
+        .bubble-letter:nth-child(6) { animation-delay: 0.40s; }
+        .bubble-letter:nth-child(7) { animation-delay: 0.48s; }
+        .bubble-letter:nth-child(8) { animation-delay: 0.56s; }
+        .bubble-letter:nth-child(9) { animation-delay: 0.64s; }
+        .bubble-letter:nth-child(10) { animation-delay: 0.72s; }
+        .bubble-letter:nth-child(11) { animation-delay: 0.80s; }
+        .bubble-letter:nth-child(12) { animation-delay: 0.88s; }
+        .bubble-letter:nth-child(13) { animation-delay: 0.96s; }
+        .bubble-letter:nth-child(14) { animation-delay: 1.04s; }
+        .bubble-letter:nth-child(15) { animation-delay: 1.12s; }
+        .bubble-letter:nth-child(16) { animation-delay: 1.20s; }
+        .bubble-letter:nth-child(17) { animation-delay: 1.28s; }
+        .bubble-letter:nth-child(18) { animation-delay: 1.36s; }
+        .bubble-letter:nth-child(19) { animation-delay: 1.44s; }
+        
+        @keyframes bubbleFloat {
+            0% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            15% {
+                transform: translateY(-8px) rotate(2deg) scale(1.08);
+                text-shadow: 0 0 12px rgba(212,175,55,0.6);
+            }
+            30% {
+                transform: translateY(2px) rotate(-1deg) scale(0.98);
+            }
+            45% {
+                transform: translateY(-5px) rotate(1deg) scale(1.03);
+            }
+            60% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+        }
+        
+        /* Wiggle animation for hover effect on the whole logo */
+        .bubble-logo:hover .bubble-letter {
+            animation: bubbleWiggle 0.4s ease-in-out;
+        }
+        
+        @keyframes bubbleWiggle {
+            0% { transform: translateX(0px) rotate(0deg); }
+            25% { transform: translateX(-3px) rotate(-2deg); }
+            75% { transform: translateX(3px) rotate(2deg); }
+            100% { transform: translateX(0px) rotate(0deg); }
+        }
+        
         .nav-links {
             display: flex;
             gap: 48px;
@@ -143,7 +218,7 @@
             justify-content: center;
             text-align: center;
             padding: 0 24px;
-            margin-bottom: 15vh;
+            margin-bottom: 10vh;
         }
         .hero-content {
             max-width: 1100px;
@@ -244,7 +319,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Collection */
+        /* Collection Section - Enhanced & Expanded */
         .collection-section {
             padding: 100px 48px;
         }
@@ -268,30 +343,36 @@
         }
         .collection-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 48px;
+            max-width: 1500px;
             margin: 0 auto;
         }
         .product-card {
-            background: rgba(17, 17, 17, 0.6);
-            backdrop-filter: blur(8px);
-            border-radius: 32px;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 36px;
             overflow: hidden;
-            border: 1px solid rgba(212,175,55,0.2);
+            border: 1px solid rgba(212,175,55,0.25);
             transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             transform: translateY(0);
+            position: relative;
         }
         .product-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-18px);
             border-color: #d4af37;
-            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.8);
+            box-shadow: 0 40px 50px -20px rgba(0,0,0,0.9);
+            background: rgba(15, 15, 15, 0.9);
         }
         .card-img {
-            height: 380px;
+            height: 400px;
             background-size: cover;
             background-position: center;
             position: relative;
+            transition: transform 0.6s ease;
+        }
+        .product-card:hover .card-img {
+            transform: scale(1.02);
         }
         .card-badge {
             position: absolute;
@@ -299,10 +380,13 @@
             right: 20px;
             background: #d4af37;
             color: #000;
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 40px;
             font-weight: 800;
             font-size: 0.7rem;
+            letter-spacing: 1px;
+            z-index: 2;
+            backdrop-filter: blur(4px);
         }
         .card-info {
             padding: 28px;
@@ -311,17 +395,20 @@
             font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 8px;
+            letter-spacing: -0.3px;
         }
         .product-sub {
             color: #d4af37;
             font-size: 0.8rem;
             letter-spacing: 2px;
             margin-bottom: 16px;
+            text-transform: uppercase;
         }
         .product-desc {
-            color: #aaa;
+            color: #bbb;
             font-size: 0.9rem;
-            margin-bottom: 20px;
+            line-height: 1.4;
+            margin-bottom: 24px;
         }
         .price-row {
             display: flex;
@@ -333,17 +420,19 @@
         .buy-btn {
             background: #d4af37;
             border: none;
-            padding: 8px 20px;
+            padding: 10px 26px;
             border-radius: 40px;
             font-weight: 700;
             color: #000;
             cursor: pointer;
             transition: 0.2s;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
         }
         .buy-btn:hover {
             background: #f5cb5c;
-            transform: scale(1.02);
+            transform: scale(1.03);
+            box-shadow: 0 0 12px rgba(212,175,55,0.6);
         }
 
         /* Quote */
@@ -411,7 +500,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.88);
             backdrop-filter: blur(12px);
             z-index: 10000;
             justify-content: center;
@@ -485,6 +574,8 @@
             .collection-section { padding: 40px 20px; }
             .hero h1 { font-size: 3rem; }
             .quote-text { font-size: 1.4rem; }
+            .collection-grid { gap: 30px; }
+            .bubble-logo { font-size: 1rem; gap: 2px; }
         }
     </style>
 </head>
@@ -497,14 +588,33 @@
 <div class="cursor-glow"></div>
 
 <div class="content">
-    <header class="site-header">
+    <header class="site-header" id="mainHeader">
         <div class="nav-bar">
-            <div class="logo-ovo">OCTOBER'S VERY OWN</div>
+            <!-- BUBBLE LETTERS ANIMATION for OCTOBER'S VERY OWN -->
+            <div class="bubble-logo" id="bubbleLogo">
+                <span class="bubble-letter">O</span>
+                <span class="bubble-letter">C</span>
+                <span class="bubble-letter">T</span>
+                <span class="bubble-letter">O</span>
+                <span class="bubble-letter">B</span>
+                <span class="bubble-letter">E</span>
+                <span class="bubble-letter">R</span>
+                <span class="bubble-letter">'</span>
+                <span class="bubble-letter">S</span>
+                <span style="width: 8px;"></span>
+                <span class="bubble-letter">V</span>
+                <span class="bubble-letter">E</span>
+                <span class="bubble-letter">R</span>
+                <span class="bubble-letter">Y</span>
+                <span style="width: 4px;"></span>
+                <span class="bubble-letter">O</span>
+                <span class="bubble-letter">W</span>
+                <span class="bubble-letter">N</span>
+            </div>
             <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#">HOME</a></li>
                 <li><a href="#collection">COLLECTION</a></li>
-                <li><a href="#">ARCHIVE</a></li>
                 <li><a href="#">OVO X</a></li>
                 <li><a href="#">SHOP</a></li>
             </ul>
@@ -531,11 +641,12 @@
             </div>
         </div>
 
+        <!-- EXPANDED & UNIQUE COLLECTION: 12 exclusive items -->
         <section id="collection" class="collection-section">
             <div class="section-title">
-                <h2>COLLECTION</h2>
+                <h2>THE COLLECTION</h2>
                 <div class="gold-bar"></div>
-                <p style="color:#aaa">Limited drops — timeless designs</p>
+                <p style="color:#aaa; margin-top: 12px;">Archival drops — each piece tells a story</p>
             </div>
             <div class="collection-grid" id="productGrid">
                 <div class="product-card" data-name="October's Hoodie" data-price="148">
@@ -543,16 +654,48 @@
                     <div class="card-info"><div class="product-title">OCTOBER'S HOODIE</div><div class="product-sub">Premium fleece</div><div class="product-desc">Embroidered owl patch, heavyweight cotton, brushed interior.</div><div class="price-row"><span class="price">$148 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
                 <div class="product-card" data-name="J. COLE Dreamer Edition" data-price="98">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/c9a03d?text=J.+COLE+x+OVO&font=montserrat');"><div class="card-badge">Collab</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/c9a03d?text=J.+COLE+DREAMER&font=montserrat');"><div class="card-badge">Collab</div></div>
                     <div class="card-info"><div class="product-title">J. COLE • DREAMER EDITION</div><div class="product-sub">Limited tee</div><div class="product-desc">Co-designed with J. Cole. Celebrating hip-hop heritage.</div><div class="price-row"><span class="price">$98 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
                 <div class="product-card" data-name="Carti Red Owl" data-price="128">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1e1e1e/c9a03d?text=CARTI+CAPSULE&font=montserrat');"><div class="card-badge">Moshpit Series</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1e1e1e/c9a03d?text=CARTI+RED+OWL&font=montserrat');"><div class="card-badge">Moshpit Series</div></div>
                     <div class="card-info"><div class="product-title">CARTI • RED OWL</div><div class="product-sub">Artist capsule</div><div class="product-desc">Bold graphics, distressed finish. Underground energy.</div><div class="price-row"><span class="price">$128 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
                 <div class="product-card" data-name="Views Varsity Jacket" data-price="420">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/2a2a2a/d4af37?text=VARSITY+JACKET&font=montserrat');"><div class="card-badge">Icon</div></div>
                     <div class="card-info"><div class="product-title">'VIEWS' VARSITY JACKET</div><div class="product-sub">Wool & leather</div><div class="product-desc">Owl embroidery on back, premium chenille patches.</div><div class="price-row"><span class="price">$420 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="OVO x NBA All-Star" data-price="275">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a2a3a/d4af37?text=NBA+OVO+EDITION&font=montserrat');"><div class="card-badge">Limited Drop</div></div>
+                    <div class="card-info"><div class="product-title">OVO • NBA ALL-STAR</div><div class="product-sub">Basketball Jersey</div><div class="product-desc">Mesh jersey with gold foil OVO logo and embroidered player patch.</div><div class="price-row"><span class="price">$275 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="6 God Signature Sneakers" data-price="350">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/0f0f1f/d4af37?text=6+GOD+SNEAKER&font=montserrat');"><div class="card-badge">Sneaker Drop</div></div>
+                    <div class="card-info"><div class="product-title">6 GOD SIGNATURE SNEAKERS</div><div class="product-sub">Limited edition</div><div class="product-desc">Premium leather, gold owl dubrae, and glow-in-the-dark sole.</div><div class="price-row"><span class="price">$350 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="OVO Soundwaves Tee" data-price="88">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/112211/d4af37?text=SOUNDWAVES+TEE&font=montserrat');"><div class="card-badge">New Arrival</div></div>
+                    <div class="card-info"><div class="product-title">SOUNDWAVES TELEGRAPH TEE</div><div class="product-sub">Audio reactive design</div><div class="product-desc">Abstract soundwave pattern, OVO Records branding, heavy cotton.</div><div class="price-row"><span class="price">$88 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="Winter '24 Shearling Coat" data-price="890">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/3a2a1a/d4af37?text=SHEARLING+COAT&font=montserrat');"><div class="card-badge">Luxury</div></div>
+                    <div class="card-info"><div class="product-title">WINTER '24 SHEARLING</div><div class="product-sub">Premium outerwear</div><div class="product-desc">Genuine shearling, gold hardware, OVO engraved buttons.</div><div class="price-row"><span class="price">$890 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="Owl Eye Chronograph" data-price="580">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/d4af37?text=OVO+WATCH&font=montserrat');"><div class="card-badge">Accessory</div></div>
+                    <div class="card-info"><div class="product-title">OWL EYE CHRONOGRAPH</div><div class="product-sub">Limited timepiece</div><div class="product-desc">Japanese movement, gold plated case, owl second hand.</div><div class="price-row"><span class="price">$580 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="OVO Denim Jacket" data-price="310">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a2b3c/d4af37?text=DENIM+JACKET+OVO&font=montserrat');"><div class="card-badge">Classic</div></div>
+                    <div class="card-info"><div class="product-title">OVO DISTRESSED DENIM</div><div class="product-sub">Selvedge edition</div><div class="product-desc">Raw hem, custom OVO buttons, back owl embroidery.</div><div class="price-row"><span class="price">$310 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="The 6 Mesh Cap" data-price="65">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/101010/d4af37?text=6+MESH+CAP&font=montserrat');"><div class="card-badge">Accessory</div></div>
+                    <div class="card-info"><div class="product-title">THE 6 MESH CAP</div><div class="product-sub">Unisex</div><div class="product-desc">Breathable mesh, 3D embroidered "6" and OVO logo.</div><div class="price-row"><span class="price">$65 USD</span><button class="buy-btn">BUY NOW</button></div></div>
+                </div>
+                <div class="product-card" data-name="OVO Nocturnal Fragrance" data-price="195">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/2c2c2c/d4af37?text=NOCTURNAL+FRAGRANCE&font=montserrat');"><div class="card-badge">Scent</div></div>
+                    <div class="card-info"><div class="product-title">OVO NOCTURNAL EDP</div><div class="product-sub">Signature scent</div><div class="product-desc">Top notes of amber, oud, and black currant. Limited release.</div><div class="price-row"><span class="price">$195 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
             </div>
         </section>
@@ -571,7 +714,7 @@
             <div class="footer-col"><h4>SUPPORT</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Size Guide</a></li></ul></div>
             <div class="footer-col"><h4>OCTOBER'S VERY OWN</h4><ul><li><a href="#">About Drake</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Store Locator</a></li></ul></div>
         </div>
-        <div class="copyright"><p>© 2026 OVO CLOTHING — OCTOBER'S VERY OWN. ALL RIGHTS RESERVED.</p></div>
+        <div class="copyright"><p>© 2026 OVO CLOTHING — OCTOBER'S VERY OWN. ALL RIGHTS RESERVED. | BUBBLE LETTERS EDITION</p></div>
     </footer>
 </div>
 
@@ -599,335 +742,134 @@
     import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
     import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
     
-    // --- Setup Scene, Camera, Renderer ---
     const container = document.getElementById('canvas-container');
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000);
-    scene.fog = new THREE.FogExp2(0x000000, 0.008);
+    scene.fog = new THREE.FogExp2(0x000000, 0.007);
     
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 0.5, 12);
+    camera.position.set(0, 0.5, 13);
     
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.toneMapping = THREE.ReinhardToneMapping;
-    renderer.toneMappingExposure = 1.3;
     container.appendChild(renderer.domElement);
     
-    // Post Processing (Bloom)
     const renderScene = new RenderPass(scene, camera);
     const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.4, 0.85);
     bloomPass.threshold = 0.05;
-    bloomPass.strength = 0.7;
-    bloomPass.radius = 0.4;
+    bloomPass.strength = 0.65;
     const effectComposer = new EffectComposer(renderer);
     effectComposer.addPass(renderScene);
     effectComposer.addPass(bloomPass);
     
-    // --- Shader Material: Abstract Fluid / Noise (like shader.se style) ---
-    const geometry = new THREE.IcosahedronGeometry(1.6, 2); // smooth, faceted
-    const vertexShader = `
-        varying vec2 vUv;
-        void main() {
-            vUv = uv;
-            vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-            gl_PointSize = 1.0;
-            gl_Position = projectionMatrix * mvPosition;
-        }
-    `;
-    const fragmentShader = `
-        uniform float uTime;
-        uniform vec2 uMouse;
-        varying vec2 vUv;
-        
-        void main() {
-            vec2 uv = vUv;
-            // Fluid-like noise using sine/cosine patterns
-            float time = uTime * 0.6;
-            float n1 = sin(uv.x * 12.0 + time) * cos(uv.y * 12.0 - time);
-            float n2 = sin((uv.y * 8.0 - uv.x * 5.0) * 1.8 + time * 1.2);
-            float n3 = cos((uv.x * 15.0 + uv.y * 7.0) * 1.2 + time * 0.9);
-            float pattern = (n1 + n2 + n3) / 3.0;
-            
-            // Color palette: deep gold, amber, magenta hints
-            vec3 colorA = vec3(0.95, 0.75, 0.25);  // gold
-            vec3 colorB = vec3(0.85, 0.35, 0.55);  // rose
-            vec3 colorC = vec3(0.2, 0.1, 0.4);     // deep purple
-            
-            vec3 finalColor = mix(colorA, colorB, pattern + 0.3);
-            finalColor = mix(finalColor, colorC, sin(uv.x * 3.14159 + uTime) * 0.4);
-            
-            // Add mouse influence: subtle hue shift
-            finalColor += vec3(uMouse.x * 0.3, uMouse.y * 0.2, (uMouse.x + uMouse.y) * 0.15);
-            
-            // Glow effect
-            float alpha = 0.95;
-            gl_FragColor = vec4(finalColor, alpha);
-        }
-    `;
-    
-    const shaderMaterial = new THREE.ShaderMaterial({
-        uniforms: {
-            uTime: { value: 0 },
-            uMouse: { value: new THREE.Vector2(0, 0) }
-        },
-        vertexShader: vertexShader,
-        fragmentShader: fragmentShader,
-        transparent: true,
-        side: THREE.DoubleSide,
-        blending: THREE.AdditiveBlending,
-        wireframe: false
-    });
-    
-    const coreMesh = new THREE.Mesh(geometry, shaderMaterial);
+    // Abstract fluid shader core
+    const geometry = new THREE.IcosahedronGeometry(1.7, 2);
+    const vertexShader = `varying vec2 vUv; void main() { vUv = uv; vec4 mvPosition = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mvPosition; }`;
+    const fragmentShader = `uniform float uTime; uniform vec2 uMouse; varying vec2 vUv; void main() { vec2 uv = vUv; float time = uTime * 0.55; float n1 = sin(uv.x * 14.0 + time) * cos(uv.y * 12.0 - time * 0.9); float n2 = sin((uv.y * 9.0 - uv.x * 6.0) * 1.6 + time); float n3 = cos((uv.x * 18.0 + uv.y * 8.0) * 1.1 + time * 1.2); float pattern = (n1 + n2 + n3) / 3.0; vec3 colorA = vec3(0.95, 0.70, 0.25); vec3 colorB = vec3(0.85, 0.40, 0.55); vec3 colorC = vec3(0.25, 0.15, 0.55); vec3 finalColor = mix(colorA, colorB, pattern + 0.3); finalColor = mix(finalColor, colorC, sin(uv.x * 3.14159 + uTime) * 0.35); finalColor += vec3(uMouse.x * 0.25, uMouse.y * 0.2, (uMouse.x + uMouse.y) * 0.12); gl_FragColor = vec4(finalColor, 0.95); }`;
+    const shaderMat = new THREE.ShaderMaterial({ uniforms: { uTime: { value: 0 }, uMouse: { value: new THREE.Vector2() } }, vertexShader, fragmentShader, transparent: true, side: THREE.DoubleSide, blending: THREE.AdditiveBlending });
+    const coreMesh = new THREE.Mesh(geometry, shaderMat);
     scene.add(coreMesh);
     
-    // Additional floating orbs with similar shader for depth
-    const smallGeo = new THREE.SphereGeometry(0.45, 32, 32);
-    const orbMaterial = new THREE.ShaderMaterial({
-        uniforms: { uTime: { value: 0 }, uMouse: { value: new THREE.Vector2(0,0) } },
-        vertexShader: vertexShader,
-        fragmentShader: `
-            uniform float uTime;
-            varying vec2 vUv;
-            void main() {
-                vec2 uv = vUv;
-                float t = uTime * 0.8;
-                float glow = sin(uv.x * 20.0 + t) * cos(uv.y * 20.0 - t);
-                vec3 color = vec3(0.9, 0.6, 0.2) + vec3(glow * 0.4, glow * 0.2, glow * 0.5);
-                gl_FragColor = vec4(color, 0.7);
-            }
-        `,
-        transparent: true,
-        blending: THREE.AdditiveBlending
-    });
-    const orb1 = new THREE.Mesh(smallGeo, orbMaterial);
-    orb1.position.set(2.2, -0.8, -1.5);
-    const orb2 = new THREE.Mesh(smallGeo, orbMaterial);
-    orb2.position.set(-2.0, 1.0, -1.8);
-    const orb3 = new THREE.Mesh(smallGeo, orbMaterial);
-    orb3.position.set(1.5, 1.4, -2.2);
+    const orbMat = new THREE.ShaderMaterial({ uniforms: { uTime: { value: 0 }, uMouse: { value: new THREE.Vector2() } }, vertexShader, fragmentShader: `uniform float uTime; varying vec2 vUv; void main() { vec2 uv = vUv; float t = uTime * 0.8; float glow = sin(uv.x * 18.0 + t) * cos(uv.y * 18.0 - t); vec3 color = vec3(0.9,0.65,0.25) + vec3(glow*0.3); gl_FragColor = vec4(color,0.75); }`, transparent: true, blending: THREE.AdditiveBlending });
+    const orbGeo = new THREE.SphereGeometry(0.55, 32, 32);
+    const orb1 = new THREE.Mesh(orbGeo, orbMat); orb1.position.set(2.4, -1.0, -1.8);
+    const orb2 = new THREE.Mesh(orbGeo, orbMat); orb2.position.set(-2.2, 1.2, -2.0);
+    const orb3 = new THREE.Mesh(orbGeo, orbMat); orb3.position.set(1.8, 1.5, -2.4);
     scene.add(orb1, orb2, orb3);
     
-    // Particle system (thousands of tiny glowing dots)
-    const particleCount = 5000;
+    const particleCount = 6500;
     const particlesGeo = new THREE.BufferGeometry();
     const posArray = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-        posArray[i*3] = (Math.random() - 0.5) * 30;
-        posArray[i*3+1] = (Math.random() - 0.5) * 18;
-        posArray[i*3+2] = (Math.random() - 0.5) * 25 - 10;
-    }
+    for (let i = 0; i < particleCount; i++) { posArray[i*3] = (Math.random() - 0.5) * 32; posArray[i*3+1] = (Math.random() - 0.5) * 20; posArray[i*3+2] = (Math.random() - 0.5) * 28 - 12; }
     particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const particleMat = new THREE.PointsMaterial({ color: 0xd4af37, size: 0.045, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
-    const particles = new THREE.Points(particlesGeo, particleMat);
+    const particles = new THREE.Points(particlesGeo, new THREE.PointsMaterial({ color: 0xd4af37, size: 0.045, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending }));
     scene.add(particles);
     
-    // Additional swirling ring (abstract)
-    const ringGeo = new THREE.TorusGeometry(2.2, 0.07, 128, 300);
-    const ringMat = new THREE.MeshStandardMaterial({ color: 0xffaa44, emissive: 0x442200, metalness: 0.7, roughness: 0.3 });
+    const ringGeo = new THREE.TorusGeometry(2.5, 0.07, 128, 300);
+    const ringMat = new THREE.MeshStandardMaterial({ color: 0xffaa55, emissive: 0x442200, metalness: 0.7 });
     const ring = new THREE.Mesh(ringGeo, ringMat);
     ring.rotation.x = Math.PI / 2;
-    ring.rotation.z = Math.PI / 3;
     scene.add(ring);
     
-    // Lighting to enhance metallic rings (though shader handles itself)
-    const ambientLight = new THREE.AmbientLight(0x111111);
-    scene.add(ambientLight);
+    const ambient = new THREE.AmbientLight(0x111111);
+    scene.add(ambient);
     const dirLight = new THREE.DirectionalLight(0xffcc88, 0.8);
     dirLight.position.set(2, 3, 4);
     scene.add(dirLight);
     
-    // Mouse & Scroll interactivity
     let mouseX = 0, mouseY = 0;
-    window.addEventListener('mousemove', (event) => {
-        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-        mouseY = (event.clientY / window.innerHeight) * 2 - 1;
-        // Update shader uniform
-        shaderMaterial.uniforms.uMouse.value.set(mouseX, mouseY);
-        orbMaterial.uniforms.uMouse.value.set(mouseX, mouseY);
-    });
-    
+    window.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth) * 2 - 1; mouseY = (e.clientY / window.innerHeight) * 2 - 1; shaderMat.uniforms.uMouse.value.set(mouseX, mouseY); orbMat.uniforms.uMouse.value.set(mouseX, mouseY); });
     let scrollPercent = 0;
-    window.addEventListener('scroll', () => {
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-        scrollPercent = window.scrollY / maxScroll;
-    });
+    window.addEventListener('scroll', () => { const maxScroll = document.body.scrollHeight - window.innerHeight; scrollPercent = window.scrollY / maxScroll; });
     
     let time = 0;
     function animate() {
         requestAnimationFrame(animate);
         time += 0.012;
-        shaderMaterial.uniforms.uTime.value = time;
-        orbMaterial.uniforms.uTime.value = time;
-        
-        // Fluid camera movement based on mouse & scroll
-        const targetCamX = mouseX * 1.2;
-        const targetCamY = -mouseY * 0.7;
+        shaderMat.uniforms.uTime.value = time;
+        orbMat.uniforms.uTime.value = time;
+        const targetCamX = mouseX * 1.0, targetCamY = -mouseY * 0.6;
         camera.position.x += (targetCamX - camera.position.x) * 0.05;
         camera.position.y += (targetCamY - camera.position.y) * 0.05;
-        const targetZ = 12 - (scrollPercent * 2.2);
+        const targetZ = 13 - (scrollPercent * 2.2);
         camera.position.z += (targetZ - camera.position.z) * 0.07;
         camera.lookAt(0, 0, 0);
-        
-        // Rotate core mesh and orbs organically
         coreMesh.rotation.y = time * 0.15;
         coreMesh.rotation.x = Math.sin(time * 0.4) * 0.2;
-        coreMesh.rotation.z = Math.cos(time * 0.3) * 0.1;
-        orb1.rotation.x = time * 0.5;
-        orb1.rotation.y = time * 0.7;
-        orb2.rotation.x = time * 0.3;
-        orb3.rotation.z = time * 0.6;
-        ring.rotation.z += 0.005;
-        ring.rotation.x = Math.PI / 2 + Math.sin(time * 0.2) * 0.1;
-        
-        // Particles drift
+        orb1.rotation.x = time * 0.5; orb2.rotation.y = time * 0.6; orb3.rotation.z = time * 0.7;
+        ring.rotation.z += 0.006;
         particles.rotation.y = time * 0.02;
-        particles.rotation.x = mouseY * 0.15;
-        
         effectComposer.render();
     }
     animate();
-    
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        effectComposer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+    window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); effectComposer.setSize(window.innerWidth, window.innerHeight); renderer.setSize(window.innerWidth, window.innerHeight); });
 </script>
 
 <script>
-    // Smooth Scroll Lenis
     const lenis = new Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     
     gsap.registerPlugin(ScrollTrigger);
     gsap.to('.hero-content', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.4 });
-    gsap.utils.toArray('.product-card').forEach(card => {
-        gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 85%', scrub: 0.4 }, opacity: 0, y: 60, duration: 1 });
-    });
+    gsap.utils.toArray('.product-card').forEach(card => { gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 85%', scrub: 0.4 }, opacity: 0, y: 60, duration: 1 }); });
     
-    // Custom Cursor interaction
-    const dot = document.querySelector('.cursor-dot');
-    const ringCursor = document.querySelector('.cursor-ring');
-    const glow = document.querySelector('.cursor-glow');
-    document.addEventListener('mousemove', (e) => {
-        dot.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
-        ringCursor.style.transform = `translate(${e.clientX - 24}px, ${e.clientY - 24}px)`;
-        glow.style.transform = `translate(${e.clientX - 110}px, ${e.clientY - 110}px)`;
-    });
-    const interactive = document.querySelectorAll('a, button, .buy-btn, .btn-primary');
-    interactive.forEach(el => {
-        el.addEventListener('mouseenter', () => { ringCursor.style.width = '76px'; ringCursor.style.height = '76px'; ringCursor.style.borderColor = '#f5cb5c'; ringCursor.style.backgroundColor = 'rgba(212,175,55,0.15)'; glow.style.opacity = '0.9'; });
-        el.addEventListener('mouseleave', () => { ringCursor.style.width = '48px'; ringCursor.style.height = '48px'; ringCursor.style.borderColor = 'rgba(212,175,55,0.7)'; ringCursor.style.backgroundColor = 'transparent'; glow.style.opacity = '0.4'; });
-    });
+    // Scroll direction header hide/show
+    let lastScrollY = 0;
+    let ticking = false;
+    const header = document.getElementById('mainHeader');
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 80) header.classList.add('hidden');
+        else if (currentScrollY < lastScrollY) header.classList.remove('hidden');
+        lastScrollY = currentScrollY;
+        ticking = false;
+    }
+    window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(handleScroll); ticking = true; } });
     
-    // Payment Modal Logic
+    // Custom Cursor
+    const dot = document.querySelector('.cursor-dot'), ringCursor = document.querySelector('.cursor-ring'), glow = document.querySelector('.cursor-glow');
+    document.addEventListener('mousemove', (e) => { dot.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`; ringCursor.style.transform = `translate(${e.clientX - 24}px, ${e.clientY - 24}px)`; glow.style.transform = `translate(${e.clientX - 110}px, ${e.clientY - 110}px)`; });
+    document.querySelectorAll('a, button, .buy-btn').forEach(el => { el.addEventListener('mouseenter', () => { ringCursor.style.width = '76px'; ringCursor.style.height = '76px'; ringCursor.style.borderColor = '#f5cb5c'; ringCursor.style.backgroundColor = 'rgba(212,175,55,0.15)'; glow.style.opacity = '0.9'; }); el.addEventListener('mouseleave', () => { ringCursor.style.width = '48px'; ringCursor.style.height = '48px'; ringCursor.style.borderColor = 'rgba(212,175,55,0.7)'; ringCursor.style.backgroundColor = 'transparent'; glow.style.opacity = '0.4'; }); });
+    
+    // Payment Modal
     const modal = document.getElementById('paymentModal');
-    const modalProductName = document.getElementById('modalProductName');
-    const modalProductPrice = document.getElementById('modalProductPrice');
-    let currentProduct = { name: '', price: 0 };
-    
-    function openModal(productName, productPrice) {
-        currentProduct.name = productName;
-        currentProduct.price = productPrice;
-        modalProductName.innerText = productName;
-        modalProductPrice.innerText = `$${productPrice} USD`;
-        modal.style.display = 'flex';
-    }
+    const modalProductName = document.getElementById('modalProductName'), modalProductPrice = document.getElementById('modalProductPrice');
+    let currentProduct = {};
+    function openModal(name, price) { currentProduct = { name, price }; modalProductName.innerText = name; modalProductPrice.innerText = `$${price} USD`; modal.style.display = 'flex'; }
     function closeModal() { modal.style.display = 'none'; }
-    
-    document.querySelectorAll('.buy-btn').forEach((btn) => {
-        const card = btn.closest('.product-card');
-        const name = card.getAttribute('data-name');
-        const price = card.getAttribute('data-price');
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openModal(name, price);
-        });
-    });
-    
-    function processPayment(method) {
-        alert(`✅ Payment successful using ${method} for ${currentProduct.name} ($${currentProduct.price} USD).\nThank you for shopping OVO!`);
-        closeModal();
-    }
-    
+    document.querySelectorAll('.buy-btn').forEach(btn => { const card = btn.closest('.product-card'); const name = card.getAttribute('data-name'), price = card.getAttribute('data-price'); btn.addEventListener('click', (e) => { e.stopPropagation(); openModal(name, price); }); });
+    function processPayment(method) { alert(`✅ Payment successful using ${method} for ${currentProduct.name} ($${currentProduct.price} USD).\nThank you for shopping OVO!`); closeModal(); }
     document.getElementById('paypalBtn').addEventListener('click', () => processPayment('PayPal'));
     document.getElementById('creditBtn').addEventListener('click', () => processPayment('Credit/Debit Card'));
     document.getElementById('appleBtn').addEventListener('click', () => processPayment('Apple Pay'));
     document.getElementById('closeModalBtn').addEventListener('click', closeModal);
     window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    menuToggle?.addEventListener('click', () => {
-        if (navLinks.style.display === 'flex') navLinks.style.display = 'none';
-        else navLinks.style.display = 'flex';
-    });
+    const menuToggle = document.getElementById('menuToggle'), navLinks = document.getElementById('navLinks');
+    menuToggle?.addEventListener('click', () => { if (navLinks.style.display === 'flex') navLinks.style.display = 'none'; else navLinks.style.display = 'flex'; });
 </script>
 </body>
 </html>
-export default function MotionPath() {
-    return (
-        <div style={{ position: "relative" }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="451" height="437">
-                {/* Our SVG path will go here */}
-            </svg>
-
-            {/* Our moving box will go here */}
-        </div>
-    )
-}
-
-/**
- * ==============   Styles   ================
- */
-
-const box = {
-    width: 50,
-    height: 50,
-    backgroundColor: "#4a9df8",
-    borderRadius: 10,
-    position: "absolute",
-    top: 0,
-    left: 0,
-}
-<div class="container">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-</div>
-
-<style>
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .dot {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: var(--hue-1);
-        will-change: transform;
-    }
-</style>
-export default function EnterAnimation() {
-    return (
-        <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-                duration: 0.4,
-                scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-            }}
-            style={ball}
-        />
-    )
-}
