@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>OVO | October's Very Own – Bubble Letters Animation</title>
+    <title>OVO | October's Very Own – Visual Collection</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
@@ -136,7 +136,6 @@
             transform-origin: center;
             text-shadow: 0 0 5px rgba(212,175,55,0.3);
         }
-        /* Individual letter delays for organic bubble effect */
         .bubble-letter:nth-child(1) { animation-delay: 0.0s; }
         .bubble-letter:nth-child(2) { animation-delay: 0.08s; }
         .bubble-letter:nth-child(3) { animation-delay: 0.16s; }
@@ -180,7 +179,6 @@
             }
         }
         
-        /* Wiggle animation for hover effect on the whole logo */
         .bubble-logo:hover .bubble-letter {
             animation: bubbleWiggle 0.4s ease-in-out;
         }
@@ -319,7 +317,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Collection Section - Enhanced & Expanded */
+        /* Collection Section */
         .collection-section {
             padding: 100px 48px;
         }
@@ -374,6 +372,17 @@
         .product-card:hover .card-img {
             transform: scale(1.02);
         }
+        /* Dark overlay for better text contrast */
+        .card-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%);
+            pointer-events: none;
+        }
         .card-badge {
             position: absolute;
             top: 20px;
@@ -390,6 +399,8 @@
         }
         .card-info {
             padding: 28px;
+            position: relative;
+            z-index: 2;
         }
         .product-title {
             font-size: 1.6rem;
@@ -454,6 +465,82 @@
             margin-top: 32px;
             font-weight: 700;
             color: #d4af37;
+        }
+
+        /* ICEMAN HINT SECTION */
+        .iceman-hint {
+            text-align: center;
+            padding: 80px 24px 100px;
+            background: linear-gradient(145deg, #030303 0%, #0a0a0a 100%);
+            border-top: 1px solid rgba(212,175,55,0.2);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+            margin: 40px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .iceman-hint::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(212,175,55,0.05) 0%, transparent 70%);
+            pointer-events: none;
+            animation: iceGlow 8s ease-in-out infinite;
+        }
+        @keyframes iceGlow {
+            0% { opacity: 0.3; transform: translateX(-10%); }
+            50% { opacity: 0.8; transform: translateX(10%); }
+            100% { opacity: 0.3; transform: translateX(-10%); }
+        }
+        .ice-icon {
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 24px;
+            display: inline-block;
+            animation: iceFloating 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(212,175,55,0.5));
+        }
+        @keyframes iceFloating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .iceman-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #a8d8ff, #d4af37, #6c9ebf);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+        .iceman-text {
+            font-size: 1.1rem;
+            color: #bbbbbb;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        .iceman-hint small {
+            display: block;
+            margin-top: 32px;
+            font-size: 0.75rem;
+            color: #6c6c6c;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+        .frost-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, #6c9ebf, #d4af37, transparent);
+            margin: 32px auto 0;
         }
 
         /* Footer */
@@ -576,6 +663,8 @@
             .quote-text { font-size: 1.4rem; }
             .collection-grid { gap: 30px; }
             .bubble-logo { font-size: 1rem; gap: 2px; }
+            .iceman-title { font-size: 1.5rem; }
+            .iceman-text { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -590,7 +679,6 @@
 <div class="content">
     <header class="site-header" id="mainHeader">
         <div class="nav-bar">
-            <!-- BUBBLE LETTERS ANIMATION for OCTOBER'S VERY OWN -->
             <div class="bubble-logo" id="bubbleLogo">
                 <span class="bubble-letter">O</span>
                 <span class="bubble-letter">C</span>
@@ -616,7 +704,6 @@
                 <li><a href="#">HOME</a></li>
                 <li><a href="#collection">COLLECTION</a></li>
                 <li><a href="#">OVO X</a></li>
-                <li><a href="#">SHOP</a></li>
             </ul>
         </div>
     </header>
@@ -629,7 +716,7 @@
                 <p class="hero-description">Premium streetwear & luxury essentials founded by Drake. Defined by the iconic owl, raw elegance, and cultural resonance.</p>
                 <div class="btn-group">
                     <a href="#collection" class="btn-primary">SHOP NOW</a>
-                    <a href="#" class="btn-outline">DISCOVER OVO</a>
+                    <a href="https://ca.octobersveryown.com/" target="_blank" rel="noopener noreferrer" class="btn-outline">DISCOVER OVO</a>
                 </div>
             </div>
         </section>
@@ -641,60 +728,72 @@
             </div>
         </div>
 
-        <!-- EXPANDED & UNIQUE COLLECTION: 12 exclusive items -->
+        <!-- COLLECTION WITH CUSTOM PRODUCT IMAGES -->
         <section id="collection" class="collection-section">
             <div class="section-title">
                 <h2>THE COLLECTION</h2>
                 <div class="gold-bar"></div>
-                <p style="color:#aaa; margin-top: 12px;">Archival drops — each piece tells a story</p>
+                <p style="color:#aaa; margin-top: 12px;">Visual archive — each piece uniquely crafted</p>
             </div>
             <div class="collection-grid" id="productGrid">
+                <!-- 1. October's Hoodie -->
                 <div class="product-card" data-name="October's Hoodie" data-price="148">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1c1c1c/d4af37?text=OVO+HOODIE&font=montserrat');"><div class="card-badge">Best Seller</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a1a1a/d4af37?text=OVO+HOODIE&font=montserrat'); background-size: cover;"></div>
                     <div class="card-info"><div class="product-title">OCTOBER'S HOODIE</div><div class="product-sub">Premium fleece</div><div class="product-desc">Embroidered owl patch, heavyweight cotton, brushed interior.</div><div class="price-row"><span class="price">$148 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 2. J. COLE Dreamer Edition -->
                 <div class="product-card" data-name="J. COLE Dreamer Edition" data-price="98">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/c9a03d?text=J.+COLE+DREAMER&font=montserrat');"><div class="card-badge">Collab</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/c9a03d?text=J.+COLE+DREAMER&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">J. COLE • DREAMER EDITION</div><div class="product-sub">Limited tee</div><div class="product-desc">Co-designed with J. Cole. Celebrating hip-hop heritage.</div><div class="price-row"><span class="price">$98 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 3. Carti Red Owl -->
                 <div class="product-card" data-name="Carti Red Owl" data-price="128">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1e1e1e/c9a03d?text=CARTI+RED+OWL&font=montserrat');"><div class="card-badge">Moshpit Series</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1e1e1e/c9a03d?text=CARTI+RED+OWL&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">CARTI • RED OWL</div><div class="product-sub">Artist capsule</div><div class="product-desc">Bold graphics, distressed finish. Underground energy.</div><div class="price-row"><span class="price">$128 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 4. Views Varsity Jacket -->
                 <div class="product-card" data-name="Views Varsity Jacket" data-price="420">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/2a2a2a/d4af37?text=VARSITY+JACKET&font=montserrat');"><div class="card-badge">Icon</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/2a2a2a/d4af37?text=VARSITY+JACKET&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">'VIEWS' VARSITY JACKET</div><div class="product-sub">Wool & leather</div><div class="product-desc">Owl embroidery on back, premium chenille patches.</div><div class="price-row"><span class="price">$420 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 5. OVO x NBA All-Star -->
                 <div class="product-card" data-name="OVO x NBA All-Star" data-price="275">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a2a3a/d4af37?text=NBA+OVO+EDITION&font=montserrat');"><div class="card-badge">Limited Drop</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a2a3a/d4af37?text=NBA+OVO+EDITION&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">OVO • NBA ALL-STAR</div><div class="product-sub">Basketball Jersey</div><div class="product-desc">Mesh jersey with gold foil OVO logo and embroidered player patch.</div><div class="price-row"><span class="price">$275 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 6. 6 God Signature Sneakers -->
                 <div class="product-card" data-name="6 God Signature Sneakers" data-price="350">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/0f0f1f/d4af37?text=6+GOD+SNEAKER&font=montserrat');"><div class="card-badge">Sneaker Drop</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/0f0f1f/d4af37?text=6+GOD+SNEAKER&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">6 GOD SIGNATURE SNEAKERS</div><div class="product-sub">Limited edition</div><div class="product-desc">Premium leather, gold owl dubrae, and glow-in-the-dark sole.</div><div class="price-row"><span class="price">$350 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 7. OVO Soundwaves Tee -->
                 <div class="product-card" data-name="OVO Soundwaves Tee" data-price="88">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/112211/d4af37?text=SOUNDWAVES+TEE&font=montserrat');"><div class="card-badge">New Arrival</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/112211/d4af37?text=SOUNDWAVES+TEE&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">SOUNDWAVES TELEGRAPH TEE</div><div class="product-sub">Audio reactive design</div><div class="product-desc">Abstract soundwave pattern, OVO Records branding, heavy cotton.</div><div class="price-row"><span class="price">$88 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 8. Winter '24 Shearling Coat -->
                 <div class="product-card" data-name="Winter '24 Shearling Coat" data-price="890">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/3a2a1a/d4af37?text=SHEARLING+COAT&font=montserrat');"><div class="card-badge">Luxury</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/3a2a1a/d4af37?text=SHEARLING+COAT&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">WINTER '24 SHEARLING</div><div class="product-sub">Premium outerwear</div><div class="product-desc">Genuine shearling, gold hardware, OVO engraved buttons.</div><div class="price-row"><span class="price">$890 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 9. Owl Eye Chronograph Watch -->
                 <div class="product-card" data-name="Owl Eye Chronograph" data-price="580">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/d4af37?text=OVO+WATCH&font=montserrat');"><div class="card-badge">Accessory</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/d4af37?text=OVO+WATCH&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">OWL EYE CHRONOGRAPH</div><div class="product-sub">Limited timepiece</div><div class="product-desc">Japanese movement, gold plated case, owl second hand.</div><div class="price-row"><span class="price">$580 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 10. OVO Distressed Denim Jacket -->
                 <div class="product-card" data-name="OVO Denim Jacket" data-price="310">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a2b3c/d4af37?text=DENIM+JACKET+OVO&font=montserrat');"><div class="card-badge">Classic</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a2b3c/d4af37?text=DENIM+JACKET+OVO&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">OVO DISTRESSED DENIM</div><div class="product-sub">Selvedge edition</div><div class="product-desc">Raw hem, custom OVO buttons, back owl embroidery.</div><div class="price-row"><span class="price">$310 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 11. The 6 Mesh Cap -->
                 <div class="product-card" data-name="The 6 Mesh Cap" data-price="65">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/101010/d4af37?text=6+MESH+CAP&font=montserrat');"><div class="card-badge">Accessory</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/101010/d4af37?text=6+MESH+CAP&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">THE 6 MESH CAP</div><div class="product-sub">Unisex</div><div class="product-desc">Breathable mesh, 3D embroidered "6" and OVO logo.</div><div class="price-row"><span class="price">$65 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
+                <!-- 12. OVO Nocturnal Fragrance -->
                 <div class="product-card" data-name="OVO Nocturnal Fragrance" data-price="195">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/2c2c2c/d4af37?text=NOCTURNAL+FRAGRANCE&font=montserrat');"><div class="card-badge">Scent</div></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/2c2c2c/d4af37?text=NOCTURNAL+FRAGRANCE&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">OVO NOCTURNAL EDP</div><div class="product-sub">Signature scent</div><div class="product-desc">Top notes of amber, oud, and black currant. Limited release.</div><div class="price-row"><span class="price">$195 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
             </div>
@@ -705,6 +804,22 @@
             <div class="quote-author">— DRAKE, FOUNDER</div>
             <i class="fas fa-owl" style="font-size: 3rem; color: #d4af37; margin-top: 40px; display: inline-block; opacity: 0.6;"></i>
         </div>
+
+        <div class="iceman-hint">
+            <div class="ice-icon">
+                <i class="fas fa-snowflake"></i>
+                <i class="fas fa-icicles" style="margin-left: 12px;"></i>
+            </div>
+            <h3 class="iceman-title">THE ICEMAN COMETH</h3>
+            <p class="iceman-text">
+                Deep within the frozen north, a legend whispers through the pines. <br>
+                They call him the Iceman — a figure of unshakable resolve, sharp as winter's edge. <br>
+                Some say he walks among us still, draped in gold and shadow. <br>
+                <strong style="color: #d4af37;">"The coldest story ever told."</strong>
+            </p>
+            <div class="frost-divider"></div>
+            <small>❄️ a fragment from the OVO archives ❄️</small>
+        </div>
     </main>
 
     <footer class="site-footer">
@@ -714,7 +829,7 @@
             <div class="footer-col"><h4>SUPPORT</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Size Guide</a></li></ul></div>
             <div class="footer-col"><h4>OCTOBER'S VERY OWN</h4><ul><li><a href="#">About Drake</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Store Locator</a></li></ul></div>
         </div>
-        <div class="copyright"><p>© 2026 OVO CLOTHING — OCTOBER'S VERY OWN. ALL RIGHTS RESERVED. | BUBBLE LETTERS EDITION</p></div>
+        <div class="copyright"><p>© 2026 OVO CLOTHING — OCTOBER'S VERY OWN. ALL RIGHTS RESERVED. | THE ICEMAN LEGACY LIVES</p></div>
     </footer>
 </div>
 
@@ -764,7 +879,6 @@
     effectComposer.addPass(renderScene);
     effectComposer.addPass(bloomPass);
     
-    // Abstract fluid shader core
     const geometry = new THREE.IcosahedronGeometry(1.7, 2);
     const vertexShader = `varying vec2 vUv; void main() { vUv = uv; vec4 mvPosition = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mvPosition; }`;
     const fragmentShader = `uniform float uTime; uniform vec2 uMouse; varying vec2 vUv; void main() { vec2 uv = vUv; float time = uTime * 0.55; float n1 = sin(uv.x * 14.0 + time) * cos(uv.y * 12.0 - time * 0.9); float n2 = sin((uv.y * 9.0 - uv.x * 6.0) * 1.6 + time); float n3 = cos((uv.x * 18.0 + uv.y * 8.0) * 1.1 + time * 1.2); float pattern = (n1 + n2 + n3) / 3.0; vec3 colorA = vec3(0.95, 0.70, 0.25); vec3 colorB = vec3(0.85, 0.40, 0.55); vec3 colorC = vec3(0.25, 0.15, 0.55); vec3 finalColor = mix(colorA, colorB, pattern + 0.3); finalColor = mix(finalColor, colorC, sin(uv.x * 3.14159 + uTime) * 0.35); finalColor += vec3(uMouse.x * 0.25, uMouse.y * 0.2, (uMouse.x + uMouse.y) * 0.12); gl_FragColor = vec4(finalColor, 0.95); }`;
@@ -836,7 +950,6 @@
     gsap.to('.hero-content', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.4 });
     gsap.utils.toArray('.product-card').forEach(card => { gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 85%', scrub: 0.4 }, opacity: 0, y: 60, duration: 1 }); });
     
-    // Scroll direction header hide/show
     let lastScrollY = 0;
     let ticking = false;
     const header = document.getElementById('mainHeader');
@@ -849,12 +962,10 @@
     }
     window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(handleScroll); ticking = true; } });
     
-    // Custom Cursor
     const dot = document.querySelector('.cursor-dot'), ringCursor = document.querySelector('.cursor-ring'), glow = document.querySelector('.cursor-glow');
     document.addEventListener('mousemove', (e) => { dot.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`; ringCursor.style.transform = `translate(${e.clientX - 24}px, ${e.clientY - 24}px)`; glow.style.transform = `translate(${e.clientX - 110}px, ${e.clientY - 110}px)`; });
     document.querySelectorAll('a, button, .buy-btn').forEach(el => { el.addEventListener('mouseenter', () => { ringCursor.style.width = '76px'; ringCursor.style.height = '76px'; ringCursor.style.borderColor = '#f5cb5c'; ringCursor.style.backgroundColor = 'rgba(212,175,55,0.15)'; glow.style.opacity = '0.9'; }); el.addEventListener('mouseleave', () => { ringCursor.style.width = '48px'; ringCursor.style.height = '48px'; ringCursor.style.borderColor = 'rgba(212,175,55,0.7)'; ringCursor.style.backgroundColor = 'transparent'; glow.style.opacity = '0.4'; }); });
     
-    // Payment Modal
     const modal = document.getElementById('paymentModal');
     const modalProductName = document.getElementById('modalProductName'), modalProductPrice = document.getElementById('modalProductPrice');
     let currentProduct = {};
