@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>OVO | October's Very Own – Visual Collection</title>
-    <!-- Google Fonts -->
+    <title>OVO | October's Very Own – Cinematic Loading Animation</title>
+    <!-- Google Fonts + Cursive Support -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -37,6 +38,85 @@
             color: #ffffff;
             overflow-x: hidden;
             overscroll-behavior: none;
+        }
+
+        /* ========== PRELOADER / LOADING ANIMATION ========== */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            pointer-events: none;
+        }
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-content {
+            text-align: center;
+            animation: fadeInScale 0.8s ease-out;
+        }
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .loader-owl {
+            font-size: 5rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+            display: inline-block;
+            animation: rotateOwl 1.2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(212,175,55,0.5));
+        }
+        @keyframes rotateOwl {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(15deg) scale(1.1); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 0px rgba(212,175,55,0); }
+            50% { text-shadow: 0 0 20px rgba(212,175,55,0.8); }
+            100% { text-shadow: 0 0 0px rgba(212,175,55,0); }
+        }
+        .loader-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #f5e7c8, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        .progress-bar-container {
+            width: 280px;
+            height: 2px;
+            background: rgba(212,175,55,0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #f5e7c8);
+            border-radius: 2px;
+            transition: width 0.15s linear;
+        }
+        .loader-percent {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: #d4af37;
+            font-weight: 300;
         }
 
         /* Custom Cursor */
@@ -90,6 +170,11 @@
             position: relative;
             z-index: 10;
             background: transparent;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .content.visible {
+            opacity: 1;
         }
 
         /* Header - with smooth hide/show on scroll */
@@ -115,26 +200,27 @@
             align-items: center;
         }
         
-        /* BUBBLE LETTERS ANIMATION for OCTOBER'S VERY OWN */
+        /* CURSIVE BUBBLE LETTERS ANIMATION for OCTOBER'S VERY OWN */
         .bubble-logo {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
-            font-family: 'Droid Sans Mono', 'Inter', monospace;
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            gap: 6px;
+            font-family: 'Great Vibes', 'Dancing Script', 'Brush Script MT', cursive;
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: capitalize;
         }
         .bubble-letter {
             display: inline-block;
-            background: linear-gradient(135deg, #f5e7c8, #d4af37);
+            background: linear-gradient(135deg, #f5e7c8, #d4af37, #f5e7c8);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: bubbleFloat 2s ease-in-out infinite;
+            animation: bubbleFloat 2.5s ease-in-out infinite;
             transform-origin: center;
-            text-shadow: 0 0 5px rgba(212,175,55,0.3);
+            text-shadow: 0 0 8px rgba(212,175,55,0.4);
+            font-weight: 600;
         }
         .bubble-letter:nth-child(1) { animation-delay: 0.0s; }
         .bubble-letter:nth-child(2) { animation-delay: 0.08s; }
@@ -157,36 +243,22 @@
         .bubble-letter:nth-child(19) { animation-delay: 1.44s; }
         
         @keyframes bubbleFloat {
-            0% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            15% {
-                transform: translateY(-8px) rotate(2deg) scale(1.08);
-                text-shadow: 0 0 12px rgba(212,175,55,0.6);
-            }
-            30% {
-                transform: translateY(2px) rotate(-1deg) scale(0.98);
-            }
-            45% {
-                transform: translateY(-5px) rotate(1deg) scale(1.03);
-            }
-            60% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
-            100% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
+            0% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; filter: blur(0px); }
+            15% { transform: translateY(-10px) rotate(3deg) scale(1.12); text-shadow: 0 0 18px rgba(212,175,55,0.7); filter: blur(0.3px); }
+            30% { transform: translateY(2px) rotate(-2deg) scale(0.98); }
+            45% { transform: translateY(-6px) rotate(2deg) scale(1.05); }
+            60% { transform: translateY(0px) rotate(0deg) scale(1); }
+            100% { transform: translateY(0px) rotate(0deg) scale(1); }
         }
         
         .bubble-logo:hover .bubble-letter {
-            animation: bubbleWiggle 0.4s ease-in-out;
+            animation: bubbleWiggle 0.5s ease-in-out;
         }
         
         @keyframes bubbleWiggle {
             0% { transform: translateX(0px) rotate(0deg); }
-            25% { transform: translateX(-3px) rotate(-2deg); }
-            75% { transform: translateX(3px) rotate(2deg); }
+            30% { transform: translateX(-4px) rotate(-3deg); }
+            70% { transform: translateX(4px) rotate(3deg); }
             100% { transform: translateX(0px) rotate(0deg); }
         }
         
@@ -372,7 +444,6 @@
         .product-card:hover .card-img {
             transform: scale(1.02);
         }
-        /* Dark overlay for better text contrast */
         .card-img::after {
             content: '';
             position: absolute;
@@ -662,9 +733,7 @@
             .hero h1 { font-size: 3rem; }
             .quote-text { font-size: 1.4rem; }
             .collection-grid { gap: 30px; }
-            .bubble-logo { font-size: 1rem; gap: 2px; }
-            .iceman-title { font-size: 1.5rem; }
-            .iceman-text { font-size: 0.9rem; }
+            .bubble-logo { font-size: 1.3rem; gap: 3px; }
         }
     </style>
 </head>
@@ -672,32 +741,46 @@
 
 <div id="canvas-container"></div>
 
+<!-- PRELOADER ANIMATION -->
+<div class="preloader" id="preloader">
+    <div class="loader-content">
+        <div class="loader-owl">
+            <i class="fas fa-owl"></i>
+        </div>
+        <div class="loader-text">October's Very Own</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="loader-percent" id="loaderPercent">0%</div>
+    </div>
+</div>
+
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
 <div class="cursor-glow"></div>
 
-<div class="content">
+<div class="content" id="mainContent">
     <header class="site-header" id="mainHeader">
         <div class="nav-bar">
             <div class="bubble-logo" id="bubbleLogo">
                 <span class="bubble-letter">O</span>
-                <span class="bubble-letter">C</span>
-                <span class="bubble-letter">T</span>
-                <span class="bubble-letter">O</span>
-                <span class="bubble-letter">B</span>
-                <span class="bubble-letter">E</span>
-                <span class="bubble-letter">R</span>
+                <span class="bubble-letter">c</span>
+                <span class="bubble-letter">t</span>
+                <span class="bubble-letter">o</span>
+                <span class="bubble-letter">b</span>
+                <span class="bubble-letter">e</span>
+                <span class="bubble-letter">r</span>
                 <span class="bubble-letter">'</span>
-                <span class="bubble-letter">S</span>
-                <span style="width: 8px;"></span>
+                <span class="bubble-letter">s</span>
+                <span style="width: 12px;"></span>
                 <span class="bubble-letter">V</span>
-                <span class="bubble-letter">E</span>
-                <span class="bubble-letter">R</span>
-                <span class="bubble-letter">Y</span>
-                <span style="width: 4px;"></span>
+                <span class="bubble-letter">e</span>
+                <span class="bubble-letter">r</span>
+                <span class="bubble-letter">y</span>
+                <span style="width: 8px;"></span>
                 <span class="bubble-letter">O</span>
-                <span class="bubble-letter">W</span>
-                <span class="bubble-letter">N</span>
+                <span class="bubble-letter">w</span>
+                <span class="bubble-letter">n</span>
             </div>
             <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="navLinks">
@@ -710,7 +793,7 @@
 
     <main>
         <section class="hero">
-            <div class="hero-content">
+            <div class="hero-content" id="heroContent">
                 <div class="hero-badge">EST. TORONTO</div>
                 <h1>THE OVO <span>LEGACY</span></h1>
                 <p class="hero-description">Premium streetwear & luxury essentials founded by Drake. Defined by the iconic owl, raw elegance, and cultural resonance.</p>
@@ -728,7 +811,6 @@
             </div>
         </div>
 
-        <!-- COLLECTION WITH CUSTOM PRODUCT IMAGES -->
         <section id="collection" class="collection-section">
             <div class="section-title">
                 <h2>THE COLLECTION</h2>
@@ -736,62 +818,50 @@
                 <p style="color:#aaa; margin-top: 12px;">Visual archive — each piece uniquely crafted</p>
             </div>
             <div class="collection-grid" id="productGrid">
-                <!-- 1. October's Hoodie -->
                 <div class="product-card" data-name="October's Hoodie" data-price="148">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a1a1a/d4af37?text=OVO+HOODIE&font=montserrat'); background-size: cover;"></div>
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a1a1a/d4af37?text=OVO+HOODIE&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">OCTOBER'S HOODIE</div><div class="product-sub">Premium fleece</div><div class="product-desc">Embroidered owl patch, heavyweight cotton, brushed interior.</div><div class="price-row"><span class="price">$148 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 2. J. COLE Dreamer Edition -->
                 <div class="product-card" data-name="J. COLE Dreamer Edition" data-price="98">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/c9a03d?text=J.+COLE+DREAMER&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">J. COLE • DREAMER EDITION</div><div class="product-sub">Limited tee</div><div class="product-desc">Co-designed with J. Cole. Celebrating hip-hop heritage.</div><div class="price-row"><span class="price">$98 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 3. Carti Red Owl -->
                 <div class="product-card" data-name="Carti Red Owl" data-price="128">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/1e1e1e/c9a03d?text=CARTI+RED+OWL&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">CARTI • RED OWL</div><div class="product-sub">Artist capsule</div><div class="product-desc">Bold graphics, distressed finish. Underground energy.</div><div class="price-row"><span class="price">$128 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 4. Views Varsity Jacket -->
                 <div class="product-card" data-name="Views Varsity Jacket" data-price="420">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/2a2a2a/d4af37?text=VARSITY+JACKET&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">'VIEWS' VARSITY JACKET</div><div class="product-sub">Wool & leather</div><div class="product-desc">Owl embroidery on back, premium chenille patches.</div><div class="price-row"><span class="price">$420 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 5. OVO x NBA All-Star -->
                 <div class="product-card" data-name="OVO x NBA All-Star" data-price="275">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a2a3a/d4af37?text=NBA+OVO+EDITION&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">OVO • NBA ALL-STAR</div><div class="product-sub">Basketball Jersey</div><div class="product-desc">Mesh jersey with gold foil OVO logo and embroidered player patch.</div><div class="price-row"><span class="price">$275 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 6. 6 God Signature Sneakers -->
                 <div class="product-card" data-name="6 God Signature Sneakers" data-price="350">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/0f0f1f/d4af37?text=6+GOD+SNEAKER&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">6 GOD SIGNATURE SNEAKERS</div><div class="product-sub">Limited edition</div><div class="product-desc">Premium leather, gold owl dubrae, and glow-in-the-dark sole.</div><div class="price-row"><span class="price">$350 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 7. OVO Soundwaves Tee -->
                 <div class="product-card" data-name="OVO Soundwaves Tee" data-price="88">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/112211/d4af37?text=SOUNDWAVES+TEE&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">SOUNDWAVES TELEGRAPH TEE</div><div class="product-sub">Audio reactive design</div><div class="product-desc">Abstract soundwave pattern, OVO Records branding, heavy cotton.</div><div class="price-row"><span class="price">$88 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 8. Winter '24 Shearling Coat -->
                 <div class="product-card" data-name="Winter '24 Shearling Coat" data-price="890">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/3a2a1a/d4af37?text=SHEARLING+COAT&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">WINTER '24 SHEARLING</div><div class="product-sub">Premium outerwear</div><div class="product-desc">Genuine shearling, gold hardware, OVO engraved buttons.</div><div class="price-row"><span class="price">$890 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 9. Owl Eye Chronograph Watch -->
                 <div class="product-card" data-name="Owl Eye Chronograph" data-price="580">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/222222/d4af37?text=OVO+WATCH&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">OWL EYE CHRONOGRAPH</div><div class="product-sub">Limited timepiece</div><div class="product-desc">Japanese movement, gold plated case, owl second hand.</div><div class="price-row"><span class="price">$580 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 10. OVO Distressed Denim Jacket -->
                 <div class="product-card" data-name="OVO Denim Jacket" data-price="310">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/1a2b3c/d4af37?text=DENIM+JACKET+OVO&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">OVO DISTRESSED DENIM</div><div class="product-sub">Selvedge edition</div><div class="product-desc">Raw hem, custom OVO buttons, back owl embroidery.</div><div class="price-row"><span class="price">$310 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 11. The 6 Mesh Cap -->
                 <div class="product-card" data-name="The 6 Mesh Cap" data-price="65">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/101010/d4af37?text=6+MESH+CAP&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">THE 6 MESH CAP</div><div class="product-sub">Unisex</div><div class="product-desc">Breathable mesh, 3D embroidered "6" and OVO logo.</div><div class="price-row"><span class="price">$65 USD</span><button class="buy-btn">BUY NOW</button></div></div>
                 </div>
-                <!-- 12. OVO Nocturnal Fragrance -->
                 <div class="product-card" data-name="OVO Nocturnal Fragrance" data-price="195">
                     <div class="card-img" style="background-image: url('https://placehold.co/600x700/2c2c2c/d4af37?text=NOCTURNAL+FRAGRANCE&font=montserrat');"></div>
                     <div class="card-info"><div class="product-title">OVO NOCTURNAL EDP</div><div class="product-sub">Signature scent</div><div class="product-desc">Top notes of amber, oud, and black currant. Limited release.</div><div class="price-row"><span class="price">$195 USD</span><button class="buy-btn">BUY NOW</button></div></div>
@@ -829,7 +899,7 @@
             <div class="footer-col"><h4>SUPPORT</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Size Guide</a></li></ul></div>
             <div class="footer-col"><h4>OCTOBER'S VERY OWN</h4><ul><li><a href="#">About Drake</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Store Locator</a></li></ul></div>
         </div>
-        <div class="copyright"><p>© 2026 OVO CLOTHING — OCTOBER'S VERY OWN. ALL RIGHTS RESERVED. | THE ICEMAN LEGACY LIVES</p></div>
+        <div class="copyright"><p>© 2026 OVO CLOTHING — OCTOBER'S VERY OWN. ALL RIGHTS RESERVED. | CURSIVE EDITION</p></div>
     </footer>
 </div>
 
@@ -942,13 +1012,49 @@
 </script>
 
 <script>
+    // ========== PRELOADER ANIMATION ==========
+    let progress = 0;
+    const progressBar = document.getElementById('progressBar');
+    const percentText = document.getElementById('loaderPercent');
+    const preloader = document.getElementById('preloader');
+    const mainContent = document.getElementById('mainContent');
+    
+    // Simulate loading progress (smooth increment)
+    const interval = setInterval(() => {
+        if (progress < 100) {
+            progress += Math.random() * 8;
+            if (progress > 100) progress = 100;
+            progressBar.style.width = progress + '%';
+            percentText.innerText = Math.floor(progress) + '%';
+        } else {
+            clearInterval(interval);
+            // Fade out preloader after reaching 100%
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+                // Show main content with fade-in
+                mainContent.classList.add('visible');
+                // Animate hero content after loader
+                gsap.to('.hero-content', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.2 });
+                // Animate product cards staggered
+                gsap.utils.toArray('.product-card').forEach((card, i) => {
+                    gsap.from(card, { 
+                        opacity: 0, 
+                        y: 60, 
+                        duration: 0.8, 
+                        delay: 0.3 + (i * 0.05),
+                        ease: 'power2.out'
+                    });
+                });
+            }, 200);
+        }
+    }, 60);
+    
+    // Lenis Smooth Scroll
     const lenis = new Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('.hero-content', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.4 });
-    gsap.utils.toArray('.product-card').forEach(card => { gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 85%', scrub: 0.4 }, opacity: 0, y: 60, duration: 1 }); });
     
     let lastScrollY = 0;
     let ticking = false;
